@@ -3,7 +3,7 @@
 <launch>
 
   <group ns="arm_1">
-    <node name="dawn_ik_solver" pkg="dawn_ik" type="solver_node" output="screen">
+    <node name="dawn_ik_solver" pkg="dawn_ik" type="solver_node_repair_arm_1" output="screen">
       <remap from="joint_trajectory_command" to="/arm_1_trajectory_controller/command" />
       <remap from="joint_trajectory_state" to="/arm_1_trajectory_controller/state" />
     </node>
@@ -12,7 +12,7 @@
   </group>
 
   <group ns="arm_2">
-    <node name="dawn_ik_solver" pkg="dawn_ik" type="solver_node_other" output="screen">
+    <node name="dawn_ik_solver" pkg="dawn_ik" type="solver_node_repair_arm_2" output="screen">
       <remap from="joint_trajectory_command" to="/arm_2_trajectory_controller/command" />
       <remap from="joint_trajectory_state" to="/arm_2_trajectory_controller/state" />
     </node>

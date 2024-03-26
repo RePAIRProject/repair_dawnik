@@ -157,7 +157,7 @@ set (SOLVER_NODE_SRC
   src/experimental.cpp
 )
 
-list (APPEND robot_targets horti lite6 mick mick_other trolley)
+list (APPEND robot_targets horti lite6 mick mick_other trolley repair_arm_1 repair_arm_2)
 
 ############# solver_node executable for each defined robot ###########
 foreach(target IN LISTS robot_targets)
