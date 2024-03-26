@@ -5,6 +5,9 @@ DawnIK Solver [1]  is a real-time inverse kinematics solver for robotic arms foc
 ## Repair Robot
 ![Repair+DawnIK](results/repair/repair_dawnik.jpeg)
 
+### TODO
+
+- Add number of repetitions for the waypoints.
 
 ## Dependencies
 
@@ -25,10 +28,10 @@ git clone git@gitlab.igg.uni-bonn.de:phenorob/oc2/active_perception/moveit_colli
 git clone --recurse-submodules -j8 https://github.com/RePAIRProject/repair_ros_robot.git
 
 # Others
-cd catkin_ws
-rosdep install --from-paths src --ignore-src -r
-sudo apt install python3-yaml python-is-python3
-pip install pyyaml
+$ cd catkin_ws
+$ rosdep install --from-paths src --ignore-src -r
+$ sudo apt install python3-yaml python-is-python3
+$ pip install pyyaml pyquaternion
 
 ################## EXTERNAL DEPENDENCIES ############################
 
@@ -105,7 +108,11 @@ roslaunch dawn_ik repair_xbot_dummy.launch
 
 ### Code Generation - Skip if you are using pre-generated headers
 
-**BE CAREFUL:** MAKE SURE JOINTS DONT HAVE EXTRA POSITION LIMITS. SOME CONFIGURATIONS LIMIT JOINT POSITIONS BETWEEN [-PI,+PI] FOR MORE STABLE MOVEIT SOLUTIONS.
+**BE CAREFUL:** MAKE SURE JOINTS DONT HAVE EXTRA POSITION LIMITS. SOME CONFIGURATIONS LIMIT JOINT POSITIONS BETWEEN [-PI,+PI] FOR MORE STABLE MOVEIT SOLUTIONS. (See horti_model repository's salih_marangoz_thesis branch as an example and check the README.md)
+
+**FOR ADDING COLLISION OBJECTS OTHER THAN SPHERES:** Modify `dawn_ik.cpp` around line 295 to create `CollisionAvoidanceGoalNumeric` instead of `CollisionAvoidanceGoal`. With this change, dawn_ik will use numerical diff instead of autodiff. Be careful because the convergence performance may be affected.
+
+**ALSO:** For experiments, we disable head arm's collision in general. But this intervenes with the ACM. We recommend enabling all collisions (see horti_macro.xacro -> `experiment` property)
 
 Make sure the robot description is loaded. (if the fake/sim is running then it is probably loaded). Re-compile the project after this step. 
 
@@ -139,6 +146,7 @@ roslaunch dawn_ik repair_solver.launch
 Before doing the experiments make sure that:
 
 - Generated code is for that robot, while using dawn_ik.
+- `settings.yaml` is set for that robot, while using collision_ik.
 
 - Requires the following to be running
   - roscore
@@ -160,6 +168,16 @@ Both arms move in XZ plane.
 - Arm_1 follows a Circle.
 - Arm_2 follows an Eight.
 - Waypoints are located in `waypoints` folder. 
+
+Waypoints are located in `waypoints` folder. Results are saved into the `results` folder. For analyzing and generating figures see `results/analyze_results.ipynb` notebook.
+
+### F.A.Q.
+
+- Solver crashes:
+  - Make sure to disable `horti_acm_tricks` for robots that are not Horti.
+
+- Parser crashes:
+  - Only single-axis revolute joints and static joints are supported.
 
 
 ### Footnotes

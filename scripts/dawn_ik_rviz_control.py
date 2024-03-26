@@ -10,7 +10,11 @@ from interactive_markers.menu_handler import *
 from dawn_ik.msg import *
 from visualization_msgs.msg import *
 from geometry_msgs.msg import Point
+from geometry_msgs.msg import PoseStamped
+import tf2_ros
+import tf2_geometry_msgs
 import tf
+from pyquaternion import Quaternion
 
 
 class RvizController:
@@ -21,6 +25,12 @@ class RvizController:
     self.goal_pub = rospy.Publisher(f"{namespace}dawn_ik_solver/ik_goal", IKGoal, queue_size=1)
     self.goal = IKGoal()
 
+    self.tf_buffer = tf2_ros.Buffer()
+    self.tf_listener = tf2_ros.TransformListener(self.tf_buffer)
+
+    self.robot_frame = rospy.get_param("~robot_frame", None)
+    self.transform_ik_goal = rospy.get_param("~transform_ik_goal", True)
+
     self.menu_handler = MenuHandler()
     self.menu_handler.insert( "PRINT_POSE", callback=self.processFeedback )
     self.menu_handler.insert( "IDLE", callback=self.processFeedback )
@@ -28,6 +38,7 @@ class RvizController:
     self.menu_handler.insert( "ENDPOINT_POSE_ORIENTATION", callback=self.processFeedback )
     self.menu_handler.insert( "ENDPOINT_POSE_ORIENTATION (Adaptive)", callback=self.processFeedback )
     self.menu_handler.insert( "ENDPOINT_POSE + LOOK-AT-GOAL", callback=self.processFeedback )
+    self.menu_handler.insert( "ENDPOINT_POSE + DIRECTION-GOAL", callback=self.processFeedback )
 
     self.header = None
     self.endpoint_pose = None
@@ -44,6 +55,7 @@ class RvizController:
 
   def updateGoal(self):
     self.goal = IKGoal()
+    self.goal.header = self.header
 
     PRINT_POSE                  = 1
     IDLE                        = 2
@@ -51,6 +63,7 @@ class RvizController:
     ENDPOINT_POSE_ORIENTATION   = 4
     ENDPOINT_POSE_ORIENTATION_A = 5
     ENDPOINT_POSE_LOOKATGOAL    = 6
+    ENDPOINT_POSE_DIRECTIONGOAL = 7
 
     #############################################################################
     if self.menu_entry_id == PRINT_POSE:
@@ -109,10 +122,42 @@ class RvizController:
       self.goal.m3_y = self.target_pose.position.y
       self.goal.m3_z = self.target_pose.position.z
       self.goal.m3_weight = 1.0
-
+    #############################################################################
+    elif self.menu_entry_id == ENDPOINT_POSE_DIRECTIONGOAL:
+      self.goal.mode = IKGoal.MODE_1 + IKGoal.MODE_4
+      self.goal.m1_x = self.endpoint_pose.position.x
+      self.goal.m1_y = self.endpoint_pose.position.y
+      self.goal.m1_z = self.endpoint_pose.position.z
+      self.goal.m1_weight = 5.0
+      q = Quaternion(self.endpoint_pose.orientation.w, 
+                     self.endpoint_pose.orientation.x,
+                     self.endpoint_pose.orientation.y,
+                     self.endpoint_pose.orientation.z)
+      direction = q.rotate((0,0,1))
+      print(direction)
+      self.goal.m4_x = direction[0]
+      self.goal.m4_y = direction[1]
+      self.goal.m4_z = direction[2]
+      self.goal.m4_weight = 1.0
 
   def processFeedback(self, feedback):
+    if self.transform_ik_goal:
+      if self.robot_frame is not None:
+        try:
+          pose = PoseStamped()
+          pose.header = feedback.header
+          pose.pose = feedback.pose
+          transform = self.tf_buffer.lookup_transform(self.robot_frame, feedback.header.frame_id, rospy.Time(0))
+          pose = tf2_geometry_msgs.do_transform_pose(pose, transform)
+          feedback.pose = pose.pose
+          feedback.header.frame_id = self.robot_frame
+        except (tf2_ros.LookupException, tf2_ros.ConnectivityException, tf2_ros.ExtrapolationException):
+          rospy.logwarn("Transform from {} to {} not found; assuming pose already in target frame".format(feedback.header.frame_id, self.robot_frame))
+      else:
+        rospy.logwarn("robot_frame not set; assuming pose already in target frame")
+
     self.feedback = feedback
+    
     if feedback.marker_name == "endpoint":
       self.header = feedback.header
       # qnorm = (feedback.pose.orientation.w**2 + feedback.pose.orientation.x**2 + feedback.pose.orientation.y**2 + feedback.pose.orientation.z**2)**0.5

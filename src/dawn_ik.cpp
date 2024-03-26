@@ -1,5 +1,6 @@
 #include <dawn_ik/dawn_ik.h>
 #include <std_msgs/Float64MultiArray.h>
+#include <tf2_eigen/tf2_eigen.h>
 
 // TODO LIST
 // - remove interactive marker feedback stuff
@@ -11,12 +12,19 @@
 namespace dawn_ik
 {
 
-DawnIK::DawnIK(ros::NodeHandle &nh, ros::NodeHandle &priv_nh): nh(nh), priv_nh(priv_nh), rand_gen(rand_dev())
+DawnIK::DawnIK(ros::NodeHandle &nh, ros::NodeHandle &priv_nh): nh(nh), priv_nh(priv_nh), rand_gen(rand_dev()), paused(false)
 {
   readParameters();
 
+  pause_srv = priv_nh.advertiseService("pause", &DawnIK::pauseCallback, this);
+
+  if (p_transform_ik_goal)
+  {
+    tf_buffer = std::make_unique<tf2_ros::Buffer>();
+    tf_listener = std::make_unique<tf2_ros::TransformListener>(*tf_buffer);
+  }
+
   problem_options.context = ceres::Context::Create();
-  //problem_options.disable_all_safety_checks = true;
 
   for (int i=0; i<robot::num_joints; i++) joint_name_to_joint_idx[robot::joint_names[i]] = i;
 
@@ -32,8 +40,6 @@ DawnIK::DawnIK(ros::NodeHandle &nh, ros::NodeHandle &priv_nh): nh(nh), priv_nh(p
 
   loop_thread = new boost::thread(boost::bind(&DawnIK::loopThread, this)); // consumer
   ik_goal_sub = priv_nh.subscribe("ik_goal", 1, &DawnIK::goalCallback, this); // producer
-
-  //endpoint_sub = priv_nh.subscribe("/rviz_moveit_motion_planning_display/robot_interaction_interactive_marker_topic/feedback", 1, &DawnIK::subscriberCallback, this);
 
 #ifdef ENABLE_EXPERIMENT_MANIPULABILITY
   robot_model_loader::RobotModelLoader robot_model_loader("robot_description");
@@ -59,6 +65,16 @@ void DawnIK::readParameters()
 
   priv_nh.param("max_step_size", p_max_step_size, 0.01);
   if (p_max_step_size < 0.0){ROS_ERROR("Invalid max_step_size!"); p_max_step_size = 0.0;} // disable on error
+
+  priv_nh.param("transform_ik_goal", p_transform_ik_goal, false);
+  priv_nh.param("robot_frame", p_robot_frame, std::string("base_link"));
+}
+
+bool DawnIK::pauseCallback(std_srvs::SetBool::Request &req, std_srvs::SetBool::Response &res)
+{
+  paused = req.data;
+  res.success = true;
+  return true;
 }
 
 void DawnIK::goalCallback(const dawn_ik::IKGoalPtr &msg)
@@ -69,16 +85,56 @@ void DawnIK::goalCallback(const dawn_ik::IKGoalPtr &msg)
   ROS_INFO_ONCE("First IK Goal Message Received!");
 }
 
-void DawnIK::subscriberCallback(const visualization_msgs::InteractiveMarkerFeedbackPtr &msg)
+bool DawnIK::transformIKGoal(dawn_ik::IKGoal &ik_goal)
 {
-  auto given_endpoint = msg->pose;
-  ROS_WARN_THROTTLE(1.0, "Endpoint received. x: %lf, y: %lf, z: %lf", given_endpoint.position.x, given_endpoint.position.y, given_endpoint.position.z);
-  endpoint.x() =  given_endpoint.position.x;
-  endpoint.y() =  given_endpoint.position.y;
-  endpoint.z() =  given_endpoint.position.z;
-  direction = Eigen::Quaterniond(given_endpoint.orientation.w, given_endpoint.orientation.x, given_endpoint.orientation.y, given_endpoint.orientation.z);
-  ik_goal_msg->mode = IKGoal::MODE_1;
+  if (ik_goal.header.frame_id == p_robot_frame) // already in the correct frame
+  {
+    return true;
+  }
+  else if (ik_goal.header.frame_id == "")
+  {
+    ROS_WARN_THROTTLE(1.0, "IK goal frame_id is empty, cannot transform!");
+    return false;
+  }
+  geometry_msgs::TransformStamped transform;
+  try
+  {
+    transform = tf_buffer->lookupTransform(p_robot_frame, ik_goal.header.frame_id, ros::Time(0));
+  }
+  catch (tf2::TransformException &ex)
+  {
+    ROS_WARN_THROTTLE(1.0, "Failed to transform IK goal: %s", ex.what());
+    return false;
+  }
+  Eigen::Vector3d m1(ik_goal.m1_x, ik_goal.m1_y, ik_goal.m1_z);
+  Eigen::Quaterniond m2(ik_goal.m2_w, ik_goal.m2_x, ik_goal.m2_y, ik_goal.m2_z);
+  Eigen::Vector3d m3(ik_goal.m3_x, ik_goal.m3_y, ik_goal.m3_z);
+  Eigen::Vector3d m4(ik_goal.m4_x, ik_goal.m4_y, ik_goal.m4_z);
+
+  tf2::doTransform(m1, m1, transform);
+  tf2::doTransform(m2, m2, transform);
+  tf2::doTransform(m3, m3, transform);
+  tf2::doTransform(m4, m4, transform);
+
+  ik_goal.m1_x = m1.x();
+  ik_goal.m1_y = m1.y();
+  ik_goal.m1_z = m1.z();
+  ik_goal.m2_w = m2.w();
+  ik_goal.m2_x = m2.x();
+  ik_goal.m2_y = m2.y();
+  ik_goal.m2_z = m2.z();
+  ik_goal.m3_x = m3.x();
+  ik_goal.m3_y = m3.y();
+  ik_goal.m3_z = m3.z();
+  ik_goal.m4_x = m4.x();
+  ik_goal.m4_y = m4.y();
+  ik_goal.m4_z = m4.z();
+
+  ik_goal.header.frame_id = p_robot_frame; // avoid repeated transformation
+
+  return true;
 }
+
 void DawnIK::loopThread()
 {
   std::vector<std::string> target_names;
@@ -88,17 +144,19 @@ void DawnIK::loopThread()
     target_names.push_back(robot::joint_names[joint_idx]);
   }
 
-  ros::Rate r(p_update_rate);
-  while (ros::ok())
+  for (ros::Rate r(p_update_rate); ros::ok(); r.sleep())
   {
     ik_goal_mutex.lock();
-
     dawn_ik::IKGoalPtr ik_goal_msg_copy = ik_goal_msg;
     ik_goal_mutex.unlock();
 
+    if (p_transform_ik_goal)
+    {
+      if (!transformIKGoal(*ik_goal_msg_copy))
+        continue;
+    }
 
-
-    if (ik_goal_msg_copy->mode != IKGoal::MODE_0)
+    if (!paused && ik_goal_msg_copy->mode != IKGoal::MODE_0)
     {
       // Random initialization is important to escape from DOF-lowering singularities. But it is possible to get noisy results with a limited time budget.
       // If we initialize using the previous joint state with added random noise, we can prevent these singularities, but we may not find a smooth solution with a limited time budget.
@@ -109,13 +167,14 @@ void DawnIK::loopThread()
       command_history = robot_monitor->getCommandHistory();
       auto latest_command = command_history.front();
 
-      // IKSolution ik_solution = update(ik_goal_msg_copy, true); // noisy init
-      // IKSolution ik_solution_without_noise = update(ik_goal_msg_copy, false); // clean init
-      // if (ik_solution.solver_summary.final_cost > ik_solution_without_noise.solver_summary.final_cost)
-      // {
-      //   ik_solution = ik_solution_without_noise; // overwrite previous solution
-      // }
-      IKSolution ik_solution = update(ik_goal_msg_copy, false); // clean init
+      IKSolution ik_solution = update(ik_goal_msg_copy, true); // noisy init
+      IKSolution ik_solution_without_noise = update(ik_goal_msg_copy, false); // clean init
+      if (ik_solution.solver_summary.final_cost > ik_solution_without_noise.solver_summary.final_cost)
+      {
+        ik_solution = ik_solution_without_noise; // overwrite previous solution
+      }
+
+      // IKSolution ik_solution = update(ik_goal_msg_copy, false); // clean init
 
       // Publish output
 //      if(latest_command.position_set)
@@ -146,17 +205,6 @@ void DawnIK::loopThread()
           double sig_vel1 = solver_history[1][i] - solver_history[2][i];
           double sig_acc0 = sig_vel0 - sig_vel1;
 
-          // center diff
-          //double sig_vel0 = (solver_history[0][i] - solver_history[2][i])/2;
-          //double sig_vel1 = (solver_history[1][i] - solver_history[3][i])/2;
-          //double sig_acc0 = sig_vel0 - sig_vel1;
-
-          // Finite Difference Equation
-          // -5,-4,-3,-2,-1,0 -> derivative order 1
-          //double sig_vel0 = (-12*solver_history[5][i]+75*solver_history[4][i]-200*solver_history[3][i]+300*solver_history[2][i]-300*solver_history[1][i]+137*solver_history[0][i])/(60);
-          // -5,-4,-3,-2,-1,0 -> derivative order 2
-          //double sig_acc0 = (-10*solver_history[5][i]+61*solver_history[4][i]-156*solver_history[3][i]+214*solver_history[2][i]-154*solver_history[1][i]+45*solver_history[0][i])/(12);
-
           // exp weighted avg
           double alpha = 0.8;
           double new_pos = alpha*prev_pos[i] + (1-alpha)*solver_history[0][i];
@@ -171,8 +219,7 @@ void DawnIK::loopThread()
       }
 
     }
-    // ROS_INFO_THROTTLE(0.25, "cycle time: %f", r.cycleTime().toSec());
-    r.sleep();
+    ROS_INFO_THROTTLE(0.25, "cycle time: %f", r.cycleTime().toSec());
   }
 }
 
@@ -284,21 +331,39 @@ IKSolution DawnIK::update(const dawn_ik::IKGoalPtr &ik_goal, bool noisy_initiali
   problem.AddResidualBlock(avoid_joint_limits_goal, nullptr, optm_target_positions);
 
   // ================== Endpoint Goal ==================
-  ceres::CostFunction* endpoint_goal = EndpointGoal::Create(shared_block);
-  //ceres::ArctanLoss *endpoint_loss = new ceres::ArctanLoss(0.4); // goal weight
-  //ceres::RelaxedIKLoss *endpoint_loss = new ceres::RelaxedIKLoss(0.5); // goal weight
-  //ceres::LossFunction *endpoint_scaled_loss = new ceres::ScaledLoss(endpoint_loss, 20000.0, ceres::TAKE_OWNERSHIP); // goal weight
-  problem.AddResidualBlock(endpoint_goal, nullptr, optm_target_positions);
+  if (ik_goal->m1_weight > 0.0 || ik_goal->m2_weight > 0.0)
+  {
+    ceres::CostFunction* endpoint_goal = EndpointGoal::Create(shared_block);
+    //ceres::ArctanLoss *endpoint_loss = new ceres::ArctanLoss(0.4); // goal weight
+    //ceres::RelaxedIKLoss *endpoint_loss = new ceres::RelaxedIKLoss(0.5); // goal weight
+    //ceres::LossFunction *endpoint_scaled_loss = new ceres::ScaledLoss(endpoint_loss, 20000.0, ceres::TAKE_OWNERSHIP); // goal weight
+    problem.AddResidualBlock(endpoint_goal, nullptr, optm_target_positions);
+  }
 
-  // ================== Future Endpoint Goal ==================
-  // TODO: a failed experiment
-  //ceres::CostFunction* future_endpoint_goal = FutureEndpointGoal::Create(shared_block);
-  //problem.AddResidualBlock(future_endpoint_goal, nullptr, optm_target_positions);
+  // ================== Look at Goal ==================
+  if (ik_goal->m3_weight > 0.0 )
+  {
+    ceres::CostFunction* look_at_goal = LookAtGoal::Create(shared_block);
+    problem.AddResidualBlock(look_at_goal, nullptr, optm_target_positions);
+  }
+
+  // ================== Direction Goal ==================
+  if (ik_goal->m4_weight > 0.0 )
+  {
+    ceres::CostFunction* direction_goal = DirectionGoal::Create(shared_block);
+    problem.AddResidualBlock(direction_goal, nullptr, optm_target_positions);
+  }
+
+  // ================== Distance to Goal ==================
+  //ceres::CostFunction* distance_to_goal = DistanceToGoal::Create(shared_block);
+  //ceres::LossFunction *distance_to_loss = new ceres::ScaledLoss(nullptr, 0.75, ceres::TAKE_OWNERSHIP); // goal weight
+  //problem.AddResidualBlock(distance_to_goal, distance_to_loss, optm_target_positions);
 
   // ============= Collision Avoidance Goal ============
   if (monitor_state->collision_state.int_pair_a.size() > 0) // skip this objective if proximity is the case
   {
     ceres::CostFunction* collision_avoidance_goal = CollisionAvoidanceGoal::Create(shared_block);
+    //ceres::CostFunction* collision_avoidance_goal = CollisionAvoidanceGoalNumeric::Create(shared_block);
     problem.AddResidualBlock(collision_avoidance_goal, nullptr, optm_target_positions);
   }
 
@@ -353,17 +418,6 @@ IKSolution DawnIK::update(const dawn_ik::IKGoalPtr &ik_goal, bool noisy_initiali
   //=================================================================================================
   // Set parameter constraints
   //=================================================================================================
-
-  // TODO
-  //options.trust_region_strategy_type = DOGLEG;
-  //options.use_nonmonotonic_steps = true;
-  //options.preconditioner_type = JACOBI;
-  //options.minimizer_type = LINE_SEARCH;
-  //options.line_search_direction_type = BFGS;
-  //options.jacobi_scaling = false;
-
-  //options.use_mixed_precision_solves = true; // Can't use this with DENSE_QR
-
   for (int target_idx=0; target_idx<robot::num_targets; target_idx++)
   {
     const int joint_idx = robot::target_idx_to_joint_idx[target_idx];
