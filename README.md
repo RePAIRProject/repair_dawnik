@@ -153,16 +153,14 @@ Before doing the experiments make sure that:
   - xbot2-core (dummy)
   - repair_xbot_dummy.launch
 
-```bash
-# Fake Joints + Rviz (only run this one command)
-roslaunch dawn_ik run_experiment_old.launch robot_name:=repair solver:=dawn_ik
+  ```bash
+  # Fake Joints + Rviz (only run this one command)
+  roslaunch dawn_ik run_experiment_old.launch robot_name:=repair solver:=dawn_ik
 
-# Gazebo + Rviz (only run this one command)
-roslaunch dawn_ik run_experiment_old.launch robot_name:=repair solver:=dawn_ik use_gazebo:=true
+  # Gazebo + Rviz (only run this one command)
+  roslaunch dawn_ik run_experiment_old.launch robot_name:=repair solver:=dawn_ik use_gazebo:=true
 
-# Xbot2 (dummy) + Rviz
-roslaunch dawn_ik run_experiment.launch robot_name:=repair solver:=dawn_ik
-```
+  ```
 
 Both arms move in XZ plane.
 - Arm_1 follows a Circle.
@@ -170,6 +168,27 @@ Both arms move in XZ plane.
 - Waypoints are located in `waypoints` folder. 
 
 Waypoints are located in `waypoints` folder. Results are saved into the `results` folder. For analyzing and generating figures see `results/analyze_results.ipynb` notebook.
+
+### Xbot2 Dummy control + motion planner
+  
+  ```bash
+  # in a new terminal
+  roscore
+
+  # in a new terminal
+  source /opt/xbot/setup.sh
+  xbot2-core --hw dummy
+
+  # in a new terminal (home the robot)
+  rosservice call /xbotcore/homing/switch 1
+
+  # in a new terminal
+  # Xbot2 dummy (dummy) + Rviz
+  roslaunch dawn_ik run_experiment_repair_dummy.launch
+
+  # in a new terminal
+  rosrun repair_interface motion_planner_test.py
+  ```
 
 ### F.A.Q.
 
