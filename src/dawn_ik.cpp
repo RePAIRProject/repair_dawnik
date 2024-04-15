@@ -219,7 +219,6 @@ void DawnIK::loopThread()
       }
 
     }
-    ROS_INFO_THROTTLE(0.25, "cycle time: %f", r.cycleTime().toSec());
   }
 }
 

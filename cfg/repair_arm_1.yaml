@@ -18,7 +18,7 @@ world_frame: "world"
 #DONE
 # Excludes joints from optimization and control 
 exclude_joints:
-  - "j_torso_1"
+  # - "j_torso_1"
 
 #########################################################
 ### Problem Constaints ##################################

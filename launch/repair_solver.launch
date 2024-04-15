@@ -5,7 +5,7 @@
   <group ns="arm_1">
     <node name="dawn_ik_solver" pkg="dawn_ik" type="solver_node_repair_arm_1" output="screen" >
       <remap from="joint_trajectory_command" to="/dawnik_bridge/arm1/command" />
-      <remap from="joint_trajectory_state" to="/dawnik_bridge/trajectory_state" />
+      <remap from="joint_trajectory_state" to="/dawnik_bridge/arm1/trajectory_state" />
     </node>
 
     <node name="dawn_ik_rviz_control" pkg="dawn_ik" type="dawn_ik_rviz_control.py" output="screen" />
@@ -14,7 +14,7 @@
   <group ns="arm_2">
     <node name="dawn_ik_solver" pkg="dawn_ik" type="solver_node_repair_arm_2" output="screen">
       <remap from="joint_trajectory_command" to="/dawnik_bridge/arm2/command" />
-      <remap from="joint_trajectory_state" to="/dawnik_bridge/trajectory_state" />
+      <remap from="joint_trajectory_state" to="/dawnik_bridge/arm2/trajectory_state" />
     </node>
 
     <node name="dawn_ik_rviz_control" pkg="dawn_ik" type="dawn_ik_rviz_control.py" output="screen" />

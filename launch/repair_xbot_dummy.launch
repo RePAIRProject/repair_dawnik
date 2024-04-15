@@ -1,23 +1,7 @@
 <?xml version="1.0"?>
 <launch>
-  <!-- Set the param that trajectory_execution_manager needs to find the controller plugin -->
-  <arg name="moveit_controller_manager" default="moveit_simple_controller_manager/MoveItSimpleControllerManager" />
-  <param name="moveit_controller_manager" value="$(arg moveit_controller_manager)"/>
-  <!-- load controller_list -->
-  <rosparam file="$(find repair_moveit_xbot)/config/controllers.yaml"/>
-
-  <node name="moveit_xbot_bridge_node" pkg="repair_moveit_xbot" type="moveit_xbot_bridge_node" />
-
-  <!-- Run the main MoveIt executable with trajectory execution -->
-  <include file="$(find repair_moveit_config_v2)/launch/move_group.launch">
-    <arg name="allow_trajectory_execution" value="true" />
-    <!-- <arg name="moveit_controller_manager" value="ros_control" /> -->
-    <arg name="fake_execution_type" value="interpolate" />
-    <arg name="info" value="true" />
-    <arg name="debug" value="false" />
-    <arg name="pipeline" value="ompl" />
-    <arg name="load_robot_description" value="true" />
-  </include>
+  <param name="robot_description"
+        command="$(find xacro)/xacro '$(find repair_urdf)/urdf/repair_full.urdf.xacro'" />
 
   <!-- Start the controllers and robot state publisher-->
   <!-- Robot state publisher -->
@@ -26,13 +10,8 @@
     <param name="tf_prefix" type="string" value="" />
   </node>
 
-  <node name="moveit_xbot_client_py" pkg="repair_interface" type="moveit_client_single.py" output="screen" />
+  <!-- <node name="moveit_xbot_client_py" pkg="repair_interface" type="moveit_client_single.py" output="screen" /> -->
   <node name="xbot_joint_state_repub" pkg="repair_interface" type="xbot_bridge.py" output="screen" />
-
-  <!-- Joint trajectory controller -->
-  <!-- <rosparam file="$(find repair_gazebo)/config/controllers.yaml" command="load" />
-  <node name="repair_controller_spawner" pkg="controller_manager" type="spawner" output="screen"
-    args="joint_state_controller arm_1_trajectory_controller arm_2_trajectory_controller torso_trajectory_controller" /> -->
 
   <!-- Start moveit_rviz with the motion planning plugin -->
   <include file="$(find repair_moveit_config_v2)/launch/moveit_rviz.launch">
