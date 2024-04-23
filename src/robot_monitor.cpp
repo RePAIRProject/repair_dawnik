@@ -410,7 +410,69 @@ RobotMonitor::computeAndPublishVisualization(const JointLinkCollisionStateConstP
     }
     else if (curr_object->getNodeType() == hpp::fcl::GEOM_CAPSULE)
     {
-      ROS_WARN("GEOM_CAPSULE TODO"); // TODO
+      const Capsule& shape = static_cast<const Capsule&>(*(curr_object->collisionGeometry()));
+
+      Eigen::Quaterniond quat(curr_rotation.w(), curr_rotation.x(), curr_rotation.y(), curr_rotation.z());
+      Eigen::Matrix3d rot_matrix = quat.toRotationMatrix();
+
+      // Vector along the capsule's principal axis scaled by its half-length
+      Eigen::Vector3d end_offset = rot_matrix * Eigen::Vector3d(0, 0, shape.halfLength);
+
+      visualization_msgs::Marker marker1;
+      marker1.header = msg->header;
+      marker1.ns = std::string("robot_collision_body_capsule");
+      marker1.id = id_counter++;
+      marker1.type = visualization_msgs::Marker::SPHERE;
+      marker1.scale.x = marker1.scale.y = marker1.scale.z = (shape.radius - robot::default_inflation)*2;
+      marker1.pose.position.x = curr_translation.x() + end_offset.x();
+      marker1.pose.position.y = curr_translation.y() + end_offset.y();
+      marker1.pose.position.z = curr_translation.z() + end_offset.z();
+      marker1.pose.orientation.w = 1.0;
+      marker1.action = visualization_msgs::Marker::ADD;
+      marker1.color.a = 0.75;
+      marker1.color.r = 0.0;
+      marker1.color.g = 0.0;
+      marker1.color.b = 1.0;
+      arr.markers.push_back(marker1);
+
+      visualization_msgs::Marker marker2;
+      marker2.header = msg->header;
+      marker2.ns = std::string("robot_collision_body_capsule");
+      marker2.id = id_counter++;
+      marker2.type = visualization_msgs::Marker::SPHERE;
+      marker2.scale.x = marker2.scale.y = marker2.scale.z = (shape.radius - robot::default_inflation)*2;
+      marker2.pose.position.x = curr_translation.x() - end_offset.x();
+      marker2.pose.position.y = curr_translation.y() - end_offset.y();
+      marker2.pose.position.z = curr_translation.z() - end_offset.z();
+      marker2.pose.orientation.w = 1.0;
+      marker2.action = visualization_msgs::Marker::ADD;
+      marker2.color.a = 0.75;
+      marker2.color.r = 0.0;
+      marker2.color.g = 0.0;
+      marker2.color.b = 1.0;
+      arr.markers.push_back(marker2);
+
+      visualization_msgs::Marker marker3;
+      marker3.header = msg->header;
+      marker3.ns = std::string("robot_collision_body_capsule");
+      marker3.id = id_counter++;
+      marker3.type = visualization_msgs::Marker::CYLINDER;
+      marker3.scale.x = (shape.radius - robot::default_inflation)*2;
+      marker3.scale.y = (shape.radius - robot::default_inflation)*2;
+      marker3.scale.z = shape.halfLength*2;
+      marker3.pose.position.x = curr_translation.x();
+      marker3.pose.position.y = curr_translation.y();
+      marker3.pose.position.z = curr_translation.z();
+      marker3.pose.orientation.x = curr_rotation.x();
+      marker3.pose.orientation.y = curr_rotation.y();
+      marker3.pose.orientation.z = curr_rotation.z();
+      marker3.pose.orientation.w = curr_rotation.w();
+      marker3.action = visualization_msgs::Marker::ADD;
+      marker3.color.a = 0.75; // Don't forget to set the alpha!
+      marker3.color.r = 0.0;
+      marker3.color.g = 0.0;
+      marker3.color.b = 1.0;
+      arr.markers.push_back(marker3);
     }
     else if (curr_object->getNodeType() == hpp::fcl::GEOM_BOX)
     {

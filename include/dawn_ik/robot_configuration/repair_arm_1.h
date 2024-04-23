@@ -2501,7 +2501,7 @@ static inline std::vector<CollisionObject*> getRobotCollisionObjects(double infl
   objects.push_back( inflatedCollisionObject(Sphere(0.05), inflation) );
   objects.push_back( inflatedCollisionObject(Sphere(0.07), inflation) );
   objects.push_back( inflatedCollisionObject(Sphere(0.07), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.11), inflation) );
+  objects.push_back( inflatedCollisionObject(Capsule(0.035, 0.14), inflation) );
   objects.push_back( inflatedCollisionObject(Sphere(0.05), inflation) );
   objects.push_back( inflatedCollisionObject(Sphere(0.05), inflation) );
   objects.push_back( inflatedCollisionObject(Sphere(0.05), inflation) );
@@ -2516,7 +2516,7 @@ static inline std::vector<CollisionObject*> getRobotCollisionObjects(double infl
   objects.push_back( inflatedCollisionObject(Sphere(0.05), inflation) );
   objects.push_back( inflatedCollisionObject(Sphere(0.07), inflation) );
   objects.push_back( inflatedCollisionObject(Sphere(0.07), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.11), inflation) );
+  objects.push_back( inflatedCollisionObject(Capsule(0.035, 0.14), inflation) );
   objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
   objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
   objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );

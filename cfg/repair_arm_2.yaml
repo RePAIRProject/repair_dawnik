@@ -183,7 +183,7 @@ proximity:
       shape: "Sphere(0.07)"
       translation: [0.0, 0.0, 0.0]
     - link: "arm_1_7"
-      shape: "Sphere(0.11)"
+      shape: "Capsule(0.035, 0.14)"
       translation: [-0.01, 0.0, 0.14]
 
 #########################################
@@ -237,7 +237,7 @@ proximity:
       shape: "Sphere(0.07)"
       translation: [0.0, 0.0, 0.0]
     - link: "arm_2_7"
-      shape: "Sphere(0.11)"
+      shape: "Capsule(0.035, 0.14)"
       translation: [0.01, 0.0, 0.14]
 
     - link: "table_top_link"
