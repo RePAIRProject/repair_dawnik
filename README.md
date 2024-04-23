@@ -1,19 +1,23 @@
 # DawnIK Solver - Repair Robot Integraton
 
-DawnIK Solver [1]  is a real-time inverse kinematics solver for robotic arms focusing on observation capabilities with collision avoidance and multiple objectives.
+DawnIK [1]  is a real-time inverse kinematics solver for robotic arms focusing on observation capabilities with collision avoidance and multiple objectives. This repository contains the accompanying code for the paper "DawnIK: Decentralized Collision-Aware Inverse Kinematics Solver for Heterogeneous Multi-Arm Systems" by Salih Marangoz, Rohit Menon, Nils Dengler, Maren Bennewitz submitted for IEEE-RAS Humanoids 2023. you can find the paper at https://arxiv.org/abs/2307.12750
 
 ## Repair Robot
 ![Repair+DawnIK](results/repair/repair_dawnik.jpeg)
 
-### TODO
 
-- Add number of repetitions for the waypoints.
+## Goal Types
+
+DawnIK has different goals defined in `goals.h` which can be combined specifically for a use-case. There are some examples:
+
+- Position Goal: [[Video]](https://www.youtube.com/watch?v=zrl12iFnM6M)
+- Position Goal + Orientation Goal: [[Video]](https://www.youtube.com/watch?v=_uTy60yxK6U)
+- Look-at Goal (+ Position Goal with a small weight): [[Video]](https://www.youtube.com/watch?v=3-Y2mOZWGVc)
 
 ## Dependencies
 
 ```bash
-################# ROS DEPENDENCIES ##################################
-cd catkin_ws/src
+$ cd catkin_ws/src
 
 # This package
 git clone git@gitlab.igg.uni-bonn.de:phenorob/oc2/active_perception/salih_marangoz_thesis.git -b repair_integration
@@ -106,13 +110,11 @@ roslaunch dawn_ik repair_fake.launch launch_gazebo:=true
 roslaunch dawn_ik repair_xbot_dummy.launch
 ```
 
-### Code Generation - Skip if you are using pre-generated headers
+### Code Generation
 
-**BE CAREFUL:** MAKE SURE JOINTS DONT HAVE EXTRA POSITION LIMITS. SOME CONFIGURATIONS LIMIT JOINT POSITIONS BETWEEN [-PI,+PI] FOR MORE STABLE MOVEIT SOLUTIONS. (See horti_model repository's salih_marangoz_thesis branch as an example and check the README.md)
-
-**FOR ADDING COLLISION OBJECTS OTHER THAN SPHERES:** Modify `dawn_ik.cpp` around line 295 to create `CollisionAvoidanceGoalNumeric` instead of `CollisionAvoidanceGoal`. With this change, dawn_ik will use numerical diff instead of autodiff. Be careful because the convergence performance may be affected.
-
-**ALSO:** For experiments, we disable head arm's collision in general. But this intervenes with the ACM. We recommend enabling all collisions (see horti_macro.xacro -> `experiment` property)
+- Make sure that the robot joints don't have further position limits (e.g. for improving MoveIt's planninng behavior where it is limited between [-PI,+PI]).
+- If you would like to use collisions objects other than spheres you need to modify the code. Modify `dawn_ik.cpp` around line 295 to create `CollisionAvoidanceGoalNumeric` instead of `CollisionAvoidanceGoal`. With this change, dawn_ik will use numerical diff instead of autodiff. Be careful because the convergence performance may be affected.
+- DawnIK can be used to isolate an arm from the collision computations in an multi-arm system. This is usually done by disabling collisions for the controlled arm. However, for the ACM computations with MoveIt make sure all collisions are enabled.
 
 Make sure the robot description is loaded. (if the fake/sim is running then it is probably loaded). Re-compile the project after this step. 
 
@@ -135,7 +137,9 @@ rosrun dawn_ik robot_parser_node _cfg:=repair_arm_2
 catkin build
 ```
 
-### DawnIK Solver/Controller
+### Solver/Controller
+
+Start the solver. This command will also launch RViz for providing input to the controller. There will be two interactive markers, one is for the endpoint pose and the other one is for the look-at goal. **Right click** one of the markers to set the current mode.
 
 ```bash
 roslaunch dawn_ik repair_solver.launch
@@ -193,13 +197,13 @@ Waypoints are located in `waypoints` folder. Results are saved into the `results
 ### F.A.Q.
 
 - Solver crashes:
-  - Make sure to disable `horti_acm_tricks` for robots that are not Horti.
+  - Make sure to disable `horti_acm_tricks` if it is not Horti. `horti_acm_tricks` disabled collision checking between the external arms. So, if you have a multi-arm robotic system with more than 2 arms, you may need to adapt the code in `robot_parser.cpp` for your use case.
 
 - Parser crashes:
   - Only single-axis revolute joints and static joints are supported.
 
 
-### Footnotes
+## Footnotes
 
 - [1] [Ceres Solver](http://ceres-solver.org/) is heavily used in this project so we named this project similar to [how Ceres Solver is named](http://ceres-solver.org/#f1). [Dawn](https://solarsystem.nasa.gov/missions/dawn/overview/) is the spacecraft launched in 2007 by NASA, reached to Ceres in 2015 and acquired the dwarf planet's information of global shape, mean density, surface morphology, mineralogy, etc. by the middle of 2016. 
 
