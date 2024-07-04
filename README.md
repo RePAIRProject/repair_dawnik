@@ -19,13 +19,10 @@ DawnIK has different goals defined in `goals.h` which can be combined specifical
 $ cd catkin_ws/src
 
 # This package
-git clone git@gitlab.igg.uni-bonn.de:phenorob/oc2/active_perception/salih_marangoz_thesis.git -b repair_integration
+git clone https://github.com/RePAIRProject/repair_dawnik.git
 
 # Fake Joints (optional alternative to Gazebo) (forked and modified)
 git clone https://github.com/salihmarangoz/fake_joint
-
-# For robot state collision evaluation
-git clone git@gitlab.igg.uni-bonn.de:phenorob/oc2/active_perception/moveit_collision_check.git
 
 # repair packages
 git clone --recurse-submodules -j8 https://github.com/RePAIRProject/repair_ros_robot.git
