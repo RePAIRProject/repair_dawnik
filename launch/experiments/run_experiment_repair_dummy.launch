@@ -14,6 +14,6 @@
   <include file="$(find dawn_ik)/launch/collision_ik/$(arg robot_name)_solver_collision_ik.launch" if="$(eval solver == 'collision_ik')"/>
 
   <!-- motion planner -->
-  <node name="motion_planner" pkg="repair_interface" type="motion_planner.py" output="screen" required="true" />
+  <node name="motion_planner_dawnik" pkg="repair_interface" type="motion_planner_dawnik.py" output="screen" required="true" />
 
 </launch>

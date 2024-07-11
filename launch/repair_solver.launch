@@ -6,18 +6,22 @@
     <node name="dawn_ik_solver" pkg="dawn_ik" type="solver_node_repair_arm_1" output="screen" >
       <remap from="joint_trajectory_command" to="/dawnik_bridge/arm1/command" />
       <remap from="joint_trajectory_state" to="/dawnik_bridge/arm1/trajectory_state" />
+      <param name="transform_ik_goal" value="false"/>
+      <param name="robot_frame" value="world"/>
     </node>
 
-    <node name="dawn_ik_rviz_control" pkg="dawn_ik" type="dawn_ik_rviz_control.py" output="screen" />
+    <!-- <node name="dawn_ik_rviz_control" pkg="dawn_ik" type="dawn_ik_rviz_control.py" output="screen" /> -->
   </group>
 
   <group ns="arm_2">
     <node name="dawn_ik_solver" pkg="dawn_ik" type="solver_node_repair_arm_2" output="screen">
       <remap from="joint_trajectory_command" to="/dawnik_bridge/arm2/command" />
       <remap from="joint_trajectory_state" to="/dawnik_bridge/arm2/trajectory_state" />
+      <param name="transform_ik_goal" value="false"/>
+      <param name="robot_frame" value="world"/>
     </node>
 
-    <node name="dawn_ik_rviz_control" pkg="dawn_ik" type="dawn_ik_rviz_control.py" output="screen" />
+    <!-- <node name="dawn_ik_rviz_control" pkg="dawn_ik" type="dawn_ik_rviz_control.py" output="screen" /> -->
   </group>
 
 </launch>

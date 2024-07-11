@@ -29,41 +29,41 @@ CollisionObject* inflatedCollisionObject(const T &shape, double inflation)
 }
 
 // Constants
-const int endpoint_link_idx = 31;
-const int num_joints = 115;
-const int num_variables = 81;
-const int num_links = 115;
-const int num_objects = 1030;
-const int num_acm_link_pairs = 2788;
-const int num_targets = 8;
+const int endpoint_link_idx = 36;
+const int num_joints = 124;
+const int num_variables = 14;
+const int num_links = 124;
+const int num_objects = 35;
+const int num_acm_link_pairs = 2588;
+const int num_targets = 7;
 
 // Mapping vectors
-const int joint_idx_to_variable_idx[115] = {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,1,2,3,4,5,6,7,-1,-1,-1,-1,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,-1,-1,-1,-1,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,-1,-1,-1,-1,-1}; // -1 if no variable available. Can be used as joint_has_variable vector
-const int variable_idx_to_joint_idx[81] = {11,22,23,24,25,26,27,28,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109};
-const int joint_idx_to_target_idx[115] = {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,1,2,3,4,5,6,7,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
-const int target_idx_to_joint_idx[8] = {11,22,23,24,25,26,27,28};
-const int object_idx_to_link_idx[1030] = {22,22,23,23,24,24,24,25,25,26,26,26,27,28,28,66,66,67,67,68,68,68,69,69,70,70,70,71,72,72,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
+const int joint_idx_to_variable_idx[124] = {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0,1,2,3,4,5,6,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,7,8,9,10,11,12,13,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1}; // -1 if no variable available. Can be used as joint_has_variable vector
+const int variable_idx_to_joint_idx[14] = {27,28,29,30,31,32,33,75,76,77,78,79,80,81};
+const int joint_idx_to_target_idx[124] = {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0,1,2,3,4,5,6,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
+const int target_idx_to_joint_idx[7] = {27,28,29,30,31,32,33};
+const int object_idx_to_link_idx[35] = {27,27,28,28,29,29,29,30,30,31,31,31,32,33,33,75,75,76,76,77,77,77,78,78,79,79,79,80,81,81,3,6,8,122,1};
 
 // Joint info
-const std::string joint_names[115] = {"ASSUMED_FIXED_ROOT_JOINT","table_top_link_joint","leg1_joint","vbar1_joint","obar1_joint","leg2_joint","vbar2_joint","leg3_joint","vbar3_joint","obar2_joint","sliding_guide_joint","j_torso_1","camera_joint","camera_link_joint","camera_depth_joint","camera_color_joint","camera_color_optical_joint","camera_depth_optical_joint","camera_left_ir_joint","camera_left_ir_optical_joint","camera_right_ir_joint","camera_right_ir_optical_joint","j_arm_1_1","j_arm_1_2","j_arm_1_3","j_arm_1_4","j_arm_1_5","j_arm_1_6","j_arm_1_7","j_tcp_1","left_hand_v1_2_research_iso_joint","left_hand_v1_2_research_grasp_joint","left_hand_v1_2_research_palm_joint","left_hand_v1_2_research_index_knuckle_joint","left_hand_v1_2_research_index_proximal_virtual_joint","left_hand_v1_2_research_index_proximal_joint","left_hand_v1_2_research_index_middle_virtual_joint","left_hand_v1_2_research_index_middle_joint","left_hand_v1_2_research_index_distal_virtual_joint","left_hand_v1_2_research_index_distal_joint","left_hand_v1_2_research_little_knuckle_joint","left_hand_v1_2_research_little_proximal_virtual_joint","left_hand_v1_2_research_little_proximal_joint","left_hand_v1_2_research_little_middle_virtual_joint","left_hand_v1_2_research_little_middle_joint","left_hand_v1_2_research_little_distal_virtual_joint","left_hand_v1_2_research_little_distal_joint","left_hand_v1_2_research_middle_knuckle_joint","left_hand_v1_2_research_middle_proximal_virtual_joint","left_hand_v1_2_research_middle_proximal_joint","left_hand_v1_2_research_middle_middle_virtual_joint","left_hand_v1_2_research_middle_middle_joint","left_hand_v1_2_research_middle_distal_virtual_joint","left_hand_v1_2_research_middle_distal_joint","left_hand_v1_2_research_ring_knuckle_joint","left_hand_v1_2_research_ring_proximal_virtual_joint","left_hand_v1_2_research_ring_proximal_joint","left_hand_v1_2_research_ring_middle_virtual_joint","left_hand_v1_2_research_ring_middle_joint","left_hand_v1_2_research_ring_distal_virtual_joint","left_hand_v1_2_research_ring_distal_joint","left_hand_v1_2_research_thumb_knuckle_joint","left_hand_v1_2_research_thumb_proximal_virtual_joint","left_hand_v1_2_research_thumb_proximal_joint","left_hand_v1_2_research_thumb_distal_virtual_joint","left_hand_v1_2_research_thumb_distal_joint","j_arm_2_1","j_arm_2_2","j_arm_2_3","j_arm_2_4","j_arm_2_5","j_arm_2_6","j_arm_2_7","j_tcp_2","right_hand_v1_2_research_iso_joint","right_hand_v1_2_research_grasp_joint","right_hand_v1_2_research_palm_joint","right_hand_v1_2_research_index_knuckle_joint","right_hand_v1_2_research_index_proximal_virtual_joint","right_hand_v1_2_research_index_proximal_joint","right_hand_v1_2_research_index_middle_virtual_joint","right_hand_v1_2_research_index_middle_joint","right_hand_v1_2_research_index_distal_virtual_joint","right_hand_v1_2_research_index_distal_joint","right_hand_v1_2_research_little_knuckle_joint","right_hand_v1_2_research_little_proximal_virtual_joint","right_hand_v1_2_research_little_proximal_joint","right_hand_v1_2_research_little_middle_virtual_joint","right_hand_v1_2_research_little_middle_joint","right_hand_v1_2_research_little_distal_virtual_joint","right_hand_v1_2_research_little_distal_joint","right_hand_v1_2_research_middle_knuckle_joint","right_hand_v1_2_research_middle_proximal_virtual_joint","right_hand_v1_2_research_middle_proximal_joint","right_hand_v1_2_research_middle_middle_virtual_joint","right_hand_v1_2_research_middle_middle_joint","right_hand_v1_2_research_middle_distal_virtual_joint","right_hand_v1_2_research_middle_distal_joint","right_hand_v1_2_research_ring_knuckle_joint","right_hand_v1_2_research_ring_proximal_virtual_joint","right_hand_v1_2_research_ring_proximal_joint","right_hand_v1_2_research_ring_middle_virtual_joint","right_hand_v1_2_research_ring_middle_joint","right_hand_v1_2_research_ring_distal_virtual_joint","right_hand_v1_2_research_ring_distal_joint","right_hand_v1_2_research_thumb_knuckle_joint","right_hand_v1_2_research_thumb_proximal_virtual_joint","right_hand_v1_2_research_thumb_proximal_joint","right_hand_v1_2_research_thumb_distal_virtual_joint","right_hand_v1_2_research_thumb_distal_joint","working_surface_joint","obar3_joint","leg4_joint","vbar4_joint","obar4_joint"};
-const int joint_axis[115] = {0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,3,3,-3,3,-3,3,3,0,0,0,0,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,3,-3,-3,-3,-3,3,3,-3,3,-3,3,3,0,0,0,0,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,0,0,0,0,0};
-const int joint_child_link_idx[115] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114};
-const int joint_parent_link_idx[115] = {-1,0,1,2,3,1,5,1,7,8,9,10,11,12,13,14,15,14,14,18,14,20,11,22,23,24,25,26,27,28,28,30,30,32,33,34,35,36,37,38,32,40,41,42,43,44,45,32,47,48,49,50,51,52,32,54,55,56,57,58,59,32,61,62,63,64,11,66,67,68,69,70,71,72,72,74,74,76,77,78,79,80,81,82,76,84,85,86,87,88,89,76,91,92,93,94,95,96,76,98,99,100,101,102,103,76,105,106,107,108,10,8,1,112,113}; // -1 if no link available
-const int joint_is_position_bounded[115] = {0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0}; // bool
-const double joint_preferred_position[115] = {0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,-1.200000,0.000000,-0.800000,0.000000,0.350000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.392699,0.392699,0.392699,0.392699,0.392699,0.392699,0.000000,0.392699,0.392699,0.392699,0.392699,0.392699,0.392699,0.000000,0.392699,0.392699,0.392699,0.392699,0.392699,0.392699,0.000000,0.392699,0.392699,0.392699,0.392699,0.392699,0.392699,0.785000,0.392699,0.392699,0.392699,0.392699,0.000000,1.200000,0.000000,0.800000,0.000000,-0.350000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.392699,0.392699,0.392699,0.392699,0.392699,0.392699,0.000000,0.392699,0.392699,0.392699,0.392699,0.392699,0.392699,0.000000,0.392699,0.392699,0.392699,0.392699,0.392699,0.392699,0.000000,0.392699,0.392699,0.392699,0.392699,0.392699,0.392699,0.785000,0.392699,0.392699,0.392699,0.392699,0.000000,0.000000,0.000000,0.000000,0.000000};
-const double joint_max_position[115] = {0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,2.600000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,2.600000,0.100000,2.600000,0.800000,2.800000,2.800000,2.800000,0.000000,0.000000,0.000000,0.000000,0.524000,0.785398,0.785398,0.785398,0.785398,0.785398,0.785398,0.524000,0.785398,0.785398,0.785398,0.785398,0.785398,0.785398,0.524000,0.785398,0.785398,0.785398,0.785398,0.785398,0.785398,0.524000,0.785398,0.785398,0.785398,0.785398,0.785398,0.785398,1.570000,0.785398,0.785398,0.785398,0.785398,2.600000,2.500000,2.600000,2.400000,2.800000,2.100000,2.800000,0.000000,0.000000,0.000000,0.000000,0.524000,0.785398,0.785398,0.785398,0.785398,0.785398,0.785398,0.524000,0.785398,0.785398,0.785398,0.785398,0.785398,0.785398,0.524000,0.785398,0.785398,0.785398,0.785398,0.785398,0.785398,0.524000,0.785398,0.785398,0.785398,0.785398,0.785398,0.785398,1.570000,0.785398,0.785398,0.785398,0.785398,0.000000,0.000000,0.000000,0.000000,0.000000};
-const double joint_min_position[115] = {0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,-2.600000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,-2.600000,-2.500000,-2.600000,-2.400000,-2.800000,-2.100000,-2.800000,0.000000,0.000000,0.000000,0.000000,-0.524000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,-0.524000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,-0.524000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,-0.524000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,-2.600000,-0.100000,-2.600000,-0.800000,-2.800000,-2.800000,-2.800000,0.000000,0.000000,0.000000,0.000000,-0.524000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,-0.524000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,-0.524000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,-0.524000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000};
-const int joint_is_velocity_bounded[115] = {0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0}; // bool
-const double joint_max_velocity[115] = {0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,3.860000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.050000,0.050000,0.050000,0.050000,0.050000,0.050000,0.050000,0.000000,0.000000,0.000000,0.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,0.050000,0.050000,0.050000,0.050000,0.050000,0.050000,0.050000,0.000000,0.000000,0.000000,0.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,10.000000,0.000000,0.000000,0.000000,0.000000,0.000000};
-const double joint_min_velocity[115] = {0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,-3.860000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,-0.050000,-0.050000,-0.050000,-0.050000,-0.050000,-0.050000,-0.050000,0.000000,0.000000,0.000000,0.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-0.050000,-0.050000,-0.050000,-0.050000,-0.050000,-0.050000,-0.050000,0.000000,0.000000,0.000000,0.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,-10.000000,0.000000,0.000000,0.000000,0.000000,0.000000};
-const int joint_is_acceleration_bounded[115] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}; // bool
-const double joint_max_acceleration[115] = {0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.050000,0.050000,0.050000,0.050000,0.050000,0.050000,0.050000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.050000,0.050000,0.050000,0.050000,0.050000,0.050000,0.050000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000};
-const double joint_min_acceleration[115] = {0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,-0.050000,-0.050000,-0.050000,-0.050000,-0.050000,-0.050000,-0.050000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,-0.050000,-0.050000,-0.050000,-0.050000,-0.050000,-0.050000,-0.050000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000};
+const std::string joint_names[124] = {"ASSUMED_FIXED_ROOT_JOINT","table_top_link_joint","leg1_joint","vbar1_joint","obar1_joint","leg2_joint","vbar2_joint","leg3_joint","vbar3_joint","obar2_joint","sliding_guide_joint","j_sliding_guide","j_torso_1","camera_joint","camera_link_joint","camera_color_joint","camera_accel_joint","camera_accel_optical_joint","camera_color_optical_joint","camera_gyro_joint","camera_gyro_optical_joint","camera_depth_joint","camera_depth_optical_joint","camera_infra_joint","camera_infra_optical_joint","camera_lower_mount_joint","camera_upper_mount_joint","j_arm_1_1","j_arm_1_2","j_arm_1_3","j_arm_1_4","j_arm_1_5","j_arm_1_6","j_arm_1_7","j_tcp_1","left_hand_v1_wide_palm_central_joint","left_hand_v1_wide_grasp_joint","left_hand_v1_wide_index_knuckle_joint","left_hand_v1_wide_index_proximal_virtual_joint","left_hand_v1_wide_index_proximal_joint","left_hand_v1_wide_index_middle_virtual_joint","left_hand_v1_wide_index_middle_joint","left_hand_v1_wide_index_distal_virtual_joint","left_hand_v1_wide_index_distal_joint","left_hand_v1_wide_middle_knuckle_joint","left_hand_v1_wide_middle_proximal_virtual_joint","left_hand_v1_wide_middle_proximal_joint","left_hand_v1_wide_middle_middle_virtual_joint","left_hand_v1_wide_middle_middle_joint","left_hand_v1_wide_middle_distal_virtual_joint","left_hand_v1_wide_middle_distal_joint","left_hand_v1_wide_palm_central_little_joint","left_hand_v1_wide_palm_central_little_virtual_joint","left_hand_v1_wide_little_knuckle_joint","left_hand_v1_wide_little_proximal_virtual_joint","left_hand_v1_wide_little_proximal_joint","left_hand_v1_wide_little_middle_virtual_joint","left_hand_v1_wide_little_middle_joint","left_hand_v1_wide_little_distal_virtual_joint","left_hand_v1_wide_little_distal_joint","left_hand_v1_wide_ring_knuckle_joint","left_hand_v1_wide_ring_proximal_virtual_joint","left_hand_v1_wide_ring_proximal_joint","left_hand_v1_wide_ring_middle_virtual_joint","left_hand_v1_wide_ring_middle_joint","left_hand_v1_wide_ring_distal_virtual_joint","left_hand_v1_wide_ring_distal_joint","left_hand_v1_wide_palm_central_thumb_joint","left_hand_v1_wide_palm_central_thumb_virtual_joint","left_hand_v1_wide_palm_thumb_support_joint","left_hand_v1_wide_thumb_knuckle_joint","left_hand_v1_wide_thumb_proximal_joint","left_hand_v1_wide_thumb_proximal_virtual_joint","left_hand_v1_wide_thumb_distal_virtual_joint","left_hand_v1_wide_thumb_distal_joint","j_arm_2_1","j_arm_2_2","j_arm_2_3","j_arm_2_4","j_arm_2_5","j_arm_2_6","j_arm_2_7","j_tcp_2","right_hand_v1_2_research_iso_joint","right_hand_v1_2_research_grasp_joint","right_hand_v1_2_research_palm_joint","right_hand_v1_2_research_index_knuckle_joint","right_hand_v1_2_research_index_proximal_virtual_joint","right_hand_v1_2_research_index_proximal_joint","right_hand_v1_2_research_index_middle_virtual_joint","right_hand_v1_2_research_index_middle_joint","right_hand_v1_2_research_index_distal_virtual_joint","right_hand_v1_2_research_index_distal_joint","right_hand_v1_2_research_little_knuckle_joint","right_hand_v1_2_research_little_proximal_virtual_joint","right_hand_v1_2_research_little_proximal_joint","right_hand_v1_2_research_little_middle_virtual_joint","right_hand_v1_2_research_little_middle_joint","right_hand_v1_2_research_little_distal_virtual_joint","right_hand_v1_2_research_little_distal_joint","right_hand_v1_2_research_middle_knuckle_joint","right_hand_v1_2_research_middle_proximal_virtual_joint","right_hand_v1_2_research_middle_proximal_joint","right_hand_v1_2_research_middle_middle_virtual_joint","right_hand_v1_2_research_middle_middle_joint","right_hand_v1_2_research_middle_distal_virtual_joint","right_hand_v1_2_research_middle_distal_joint","right_hand_v1_2_research_ring_knuckle_joint","right_hand_v1_2_research_ring_proximal_virtual_joint","right_hand_v1_2_research_ring_proximal_joint","right_hand_v1_2_research_ring_middle_virtual_joint","right_hand_v1_2_research_ring_middle_joint","right_hand_v1_2_research_ring_distal_virtual_joint","right_hand_v1_2_research_ring_distal_joint","right_hand_v1_2_research_thumb_knuckle_joint","right_hand_v1_2_research_thumb_proximal_virtual_joint","right_hand_v1_2_research_thumb_proximal_joint","right_hand_v1_2_research_thumb_distal_virtual_joint","right_hand_v1_2_research_thumb_distal_joint","working_surface_joint","obar3_joint","leg4_joint","vbar4_joint","obar4_joint"};
+const int joint_axis[124] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,-3,3,-3,3,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,-3,3,-3,3,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+const int joint_child_link_idx[124] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123};
+const int joint_parent_link_idx[124] = {-1,0,1,2,3,1,5,1,7,8,9,10,11,12,13,14,15,16,15,15,19,14,21,14,23,13,13,12,27,28,29,30,31,32,33,33,35,35,37,38,39,40,41,42,35,44,45,46,47,48,49,35,51,52,53,54,55,56,57,58,52,60,61,62,63,64,65,35,67,68,69,70,71,72,73,12,75,76,77,78,79,80,81,81,83,83,85,86,87,88,89,90,91,85,93,94,95,96,97,98,85,100,101,102,103,104,105,85,107,108,109,110,111,112,85,114,115,116,117,10,8,1,121,122}; // -1 if no link available
+const int joint_is_position_bounded[124] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}; // bool
+const double joint_preferred_position[124] = {0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,-1.200000,0.000000,-0.800000,0.000000,0.350000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,1.200000,0.000000,0.800000,0.000000,-0.350000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000};
+const double joint_max_position[124] = {0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,2.600000,0.100000,2.600000,0.800000,2.800000,2.800000,2.800000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,2.600000,2.500000,2.600000,2.400000,2.800000,2.100000,2.800000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000};
+const double joint_min_position[124] = {0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,-2.600000,-2.500000,-2.600000,-2.400000,-2.800000,-2.100000,-2.800000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,-2.600000,-0.100000,-2.600000,-0.800000,-2.800000,-2.800000,-2.800000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000};
+const int joint_is_velocity_bounded[124] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}; // bool
+const double joint_max_velocity[124] = {0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,3.860000,3.860000,6.060000,6.060000,11.720000,11.720000,11.720000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,3.860000,3.860000,6.060000,6.060000,11.720000,11.720000,11.720000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000};
+const double joint_min_velocity[124] = {0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,-3.860000,-3.860000,-6.060000,-6.060000,-11.720000,-11.720000,-11.720000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,-3.860000,-3.860000,-6.060000,-6.060000,-11.720000,-11.720000,-11.720000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000};
+const int joint_is_acceleration_bounded[124] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}; // bool
+const double joint_max_acceleration[124] = {0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000};
+const double joint_min_acceleration[124] = {0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000};
 
 // Link info
-const std::string link_names[115] = {"world","table_top_link","leg1_link","vbar1_link","obar1_link","leg2_link","vbar2_link","leg3_link","vbar3_link","obar2_link","sliding_guide_link","torso_1","camera_bottom_screw_frame","camera_link","camera_depth_frame","camera_color_frame","camera_color_optical_frame","camera_depth_optical_frame","camera_left_ir_frame","camera_left_ir_optical_frame","camera_right_ir_frame","camera_right_ir_optical_frame","arm_1_1","arm_1_2","arm_1_3","arm_1_4","arm_1_5","arm_1_6","arm_1_7","arm_1_tcp","left_hand_v1_2_research_iso_link","left_hand_v1_2_research_grasp_link","left_hand_v1_2_research_palm_link","left_hand_v1_2_research_index_knuckle_link","left_hand_v1_2_research_index_proximal_virtual_link","left_hand_v1_2_research_index_proximal_link","left_hand_v1_2_research_index_middle_virtual_link","left_hand_v1_2_research_index_middle_link","left_hand_v1_2_research_index_distal_virtual_link","left_hand_v1_2_research_index_distal_link","left_hand_v1_2_research_little_knuckle_link","left_hand_v1_2_research_little_proximal_virtual_link","left_hand_v1_2_research_little_proximal_link","left_hand_v1_2_research_little_middle_virtual_link","left_hand_v1_2_research_little_middle_link","left_hand_v1_2_research_little_distal_virtual_link","left_hand_v1_2_research_little_distal_link","left_hand_v1_2_research_middle_knuckle_link","left_hand_v1_2_research_middle_proximal_virtual_link","left_hand_v1_2_research_middle_proximal_link","left_hand_v1_2_research_middle_middle_virtual_link","left_hand_v1_2_research_middle_middle_link","left_hand_v1_2_research_middle_distal_virtual_link","left_hand_v1_2_research_middle_distal_link","left_hand_v1_2_research_ring_knuckle_link","left_hand_v1_2_research_ring_proximal_virtual_link","left_hand_v1_2_research_ring_proximal_link","left_hand_v1_2_research_ring_middle_virtual_link","left_hand_v1_2_research_ring_middle_link","left_hand_v1_2_research_ring_distal_virtual_link","left_hand_v1_2_research_ring_distal_link","left_hand_v1_2_research_thumb_knuckle_link","left_hand_v1_2_research_thumb_proximal_virtual_link","left_hand_v1_2_research_thumb_proximal_link","left_hand_v1_2_research_thumb_distal_virtual_link","left_hand_v1_2_research_thumb_distal_link","arm_2_1","arm_2_2","arm_2_3","arm_2_4","arm_2_5","arm_2_6","arm_2_7","arm_2_tcp","right_hand_v1_2_research_iso_link","right_hand_v1_2_research_grasp_link","right_hand_v1_2_research_palm_link","right_hand_v1_2_research_index_knuckle_link","right_hand_v1_2_research_index_proximal_virtual_link","right_hand_v1_2_research_index_proximal_link","right_hand_v1_2_research_index_middle_virtual_link","right_hand_v1_2_research_index_middle_link","right_hand_v1_2_research_index_distal_virtual_link","right_hand_v1_2_research_index_distal_link","right_hand_v1_2_research_little_knuckle_link","right_hand_v1_2_research_little_proximal_virtual_link","right_hand_v1_2_research_little_proximal_link","right_hand_v1_2_research_little_middle_virtual_link","right_hand_v1_2_research_little_middle_link","right_hand_v1_2_research_little_distal_virtual_link","right_hand_v1_2_research_little_distal_link","right_hand_v1_2_research_middle_knuckle_link","right_hand_v1_2_research_middle_proximal_virtual_link","right_hand_v1_2_research_middle_proximal_link","right_hand_v1_2_research_middle_middle_virtual_link","right_hand_v1_2_research_middle_middle_link","right_hand_v1_2_research_middle_distal_virtual_link","right_hand_v1_2_research_middle_distal_link","right_hand_v1_2_research_ring_knuckle_link","right_hand_v1_2_research_ring_proximal_virtual_link","right_hand_v1_2_research_ring_proximal_link","right_hand_v1_2_research_ring_middle_virtual_link","right_hand_v1_2_research_ring_middle_link","right_hand_v1_2_research_ring_distal_virtual_link","right_hand_v1_2_research_ring_distal_link","right_hand_v1_2_research_thumb_knuckle_link","right_hand_v1_2_research_thumb_proximal_virtual_link","right_hand_v1_2_research_thumb_proximal_link","right_hand_v1_2_research_thumb_distal_virtual_link","right_hand_v1_2_research_thumb_distal_link","working_surface_link","obar3_link","leg4_link","vbar4_link","obar4_link"};
-const int link_parent_joint_idx[115] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114};
-const double link_transform_translation_only[115][3] = {{0.000000, 0.000000, 0.000000},
+const std::string link_names[124] = {"world","table_top_link","leg1_link","vbar1_link","obar1_link","leg2_link","vbar2_link","leg3_link","vbar3_link","obar2_link","sliding_guide_link","dummy_prismatic_link","torso_1","camera_bottom_screw_frame","camera_link","camera_color_frame","camera_accel_frame","camera_accel_optical_frame","camera_color_optical_frame","camera_gyro_frame","camera_gyro_optical_frame","camera_depth_frame","camera_depth_optical_frame","camera_infra_frame","camera_infra_optical_frame","camera_lower_mount","camera_upper_mount","arm_1_1","arm_1_2","arm_1_3","arm_1_4","arm_1_5","arm_1_6","arm_1_7","arm_1_tcp","left_hand_v1_wide_palm_central_link","left_hand_v1_wide_grasp_link","left_hand_v1_wide_index_knuckle_link","left_hand_v1_wide_index_proximal_virtual_link","left_hand_v1_wide_index_proximal_link","left_hand_v1_wide_index_middle_virtual_link","left_hand_v1_wide_index_middle_link","left_hand_v1_wide_index_distal_virtual_link","left_hand_v1_wide_index_distal_link","left_hand_v1_wide_middle_knuckle_link","left_hand_v1_wide_middle_proximal_virtual_link","left_hand_v1_wide_middle_proximal_link","left_hand_v1_wide_middle_middle_virtual_link","left_hand_v1_wide_middle_middle_link","left_hand_v1_wide_middle_distal_virtual_link","left_hand_v1_wide_middle_distal_link","left_hand_v1_wide_palm_central_little_link","left_hand_v1_wide_palm_little_link","left_hand_v1_wide_little_knuckle_link","left_hand_v1_wide_little_proximal_virtual_link","left_hand_v1_wide_little_proximal_link","left_hand_v1_wide_little_middle_virtual_link","left_hand_v1_wide_little_middle_link","left_hand_v1_wide_little_distal_virtual_link","left_hand_v1_wide_little_distal_link","left_hand_v1_wide_ring_knuckle_link","left_hand_v1_wide_ring_proximal_virtual_link","left_hand_v1_wide_ring_proximal_link","left_hand_v1_wide_ring_middle_virtual_link","left_hand_v1_wide_ring_middle_link","left_hand_v1_wide_ring_distal_virtual_link","left_hand_v1_wide_ring_distal_link","left_hand_v1_wide_palm_central_thumb_link","left_hand_v1_wide_palm_thumb_link","left_hand_v1_wide_palm_thumb_support_link","left_hand_v1_wide_thumb_knuckle_link","left_hand_v1_wide_thumb_proximal_virtual_link","left_hand_v1_wide_thumb_proximal_link","left_hand_v1_wide_thumb_distal_virtual_link","left_hand_v1_wide_thumb_distal_link","arm_2_1","arm_2_2","arm_2_3","arm_2_4","arm_2_5","arm_2_6","arm_2_7","arm_2_tcp","right_hand_v1_2_research_iso_link","right_hand_v1_2_research_grasp_link","right_hand_v1_2_research_palm_link","right_hand_v1_2_research_index_knuckle_link","right_hand_v1_2_research_index_proximal_virtual_link","right_hand_v1_2_research_index_proximal_link","right_hand_v1_2_research_index_middle_virtual_link","right_hand_v1_2_research_index_middle_link","right_hand_v1_2_research_index_distal_virtual_link","right_hand_v1_2_research_index_distal_link","right_hand_v1_2_research_little_knuckle_link","right_hand_v1_2_research_little_proximal_virtual_link","right_hand_v1_2_research_little_proximal_link","right_hand_v1_2_research_little_middle_virtual_link","right_hand_v1_2_research_little_middle_link","right_hand_v1_2_research_little_distal_virtual_link","right_hand_v1_2_research_little_distal_link","right_hand_v1_2_research_middle_knuckle_link","right_hand_v1_2_research_middle_proximal_virtual_link","right_hand_v1_2_research_middle_proximal_link","right_hand_v1_2_research_middle_middle_virtual_link","right_hand_v1_2_research_middle_middle_link","right_hand_v1_2_research_middle_distal_virtual_link","right_hand_v1_2_research_middle_distal_link","right_hand_v1_2_research_ring_knuckle_link","right_hand_v1_2_research_ring_proximal_virtual_link","right_hand_v1_2_research_ring_proximal_link","right_hand_v1_2_research_ring_middle_virtual_link","right_hand_v1_2_research_ring_middle_link","right_hand_v1_2_research_ring_distal_virtual_link","right_hand_v1_2_research_ring_distal_link","right_hand_v1_2_research_thumb_knuckle_link","right_hand_v1_2_research_thumb_proximal_virtual_link","right_hand_v1_2_research_thumb_proximal_link","right_hand_v1_2_research_thumb_distal_virtual_link","right_hand_v1_2_research_thumb_distal_link","working_surface_link","obar3_link","leg4_link","vbar4_link","obar4_link"};
+const int link_parent_joint_idx[124] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123};
+const double link_transform_translation_only[124][3] = {{0.000000, 0.000000, 0.000000},
                                                         {0.000000, 0.000000, 0.000000},
                                                         {0.500000, 1.250000, 1.000000},
                                                         {0.000000, 0.000000, 0.485000},
@@ -75,16 +75,21 @@ const double link_transform_translation_only[115][3] = {{0.000000, 0.000000, 0.0
                                                         {-0.500000, 0.000000, 0.485000},
                                                         {0.000000, 1.250000, 0.300000},
                                                         {0.000000, 0.000000, 0.000000},
+                                                        {0.000000, 0.000000, 0.000000},
                                                         {0.085700, 0.000048, -0.273184},
-                                                        {0.000000, 0.017500, 0.012500},
-                                                        {0.000000, 0.000000, 0.000000},
-                                                        {0.000000, 0.015000, 0.000000},
-                                                        {0.000000, 0.000000, 0.000000},
-                                                        {0.000000, 0.000000, 0.000000},
+                                                        {0.007500, 0.000000, 0.021150},
+                                                        {0.000000, 0.000000, 0.024000},
+                                                        {-0.004101, -0.012978, 0.002561},
                                                         {0.000000, 0.000000, 0.000000},
                                                         {0.000000, 0.000000, 0.000000},
-                                                        {0.000000, -0.050000, 0.000000},
+                                                        {-0.004101, -0.012978, 0.002561},
                                                         {0.000000, 0.000000, 0.000000},
+                                                        {0.000000, 0.000000, 0.000000},
+                                                        {0.000000, 0.000000, 0.000000},
+                                                        {0.000000, 0.000000, 0.000000},
+                                                        {0.000000, 0.000000, 0.000000},
+                                                        {-0.014000, 0.000000, 0.010150},
+                                                        {-0.014000, 0.000000, 0.050150},
                                                         {0.000000, 0.135150, -0.242150},
                                                         {-0.060000, 0.030000, 0.125500},
                                                         {0.000000, 0.073000, -0.060150},
@@ -94,41 +99,45 @@ const double link_transform_translation_only[115][3] = {{0.000000, 0.000000, 0.0
                                                         {0.000000, -0.062877, 0.050000},
                                                         {0.000000, 0.000000, 0.000000},
                                                         {0.000000, 0.000000, 0.000000},
-                                                        {0.030000, 0.060000, 0.100000},
-                                                        {0.004500, 0.014500, 0.144000},
-                                                        {-0.020000, -0.007000, -0.014000},
+                                                        {0.030000, -0.100000, 0.150000},
+                                                        {0.005000, -0.044895, 0.112230},
+                                                        {-0.006500, 0.000000, 0.024000},
                                                         {0.009000, 0.000000, 0.000000},
-                                                        {0.013000, 0.000000, 0.000000},
-                                                        {0.013000, 0.000000, 0.000000},
-                                                        {0.017000, 0.000000, 0.000000},
+                                                        {0.041000, 0.000000, 0.000000},
                                                         {0.009000, 0.000000, 0.000000},
-                                                        {0.013000, 0.000000, 0.000000},
-                                                        {0.040000, -0.012000, -0.014000},
+                                                        {0.041000, 0.000000, 0.000000},
                                                         {0.009000, 0.000000, 0.000000},
-                                                        {0.013000, 0.000000, 0.000000},
-                                                        {0.013000, 0.000000, 0.000000},
-                                                        {0.017000, 0.000000, 0.000000},
+                                                        {0.005000, -0.012500, 0.115000},
+                                                        {-0.006500, 0.000000, 0.024000},
                                                         {0.009000, 0.000000, 0.000000},
-                                                        {0.013000, 0.000000, 0.000000},
-                                                        {0.000000, 0.000000, -0.014000},
+                                                        {0.041000, 0.000000, 0.000000},
                                                         {0.009000, 0.000000, 0.000000},
-                                                        {0.013000, 0.000000, 0.000000},
-                                                        {0.013000, 0.000000, 0.000000},
-                                                        {0.017000, 0.000000, 0.000000},
+                                                        {0.041000, 0.000000, 0.000000},
                                                         {0.009000, 0.000000, 0.000000},
-                                                        {0.013000, 0.000000, 0.000000},
-                                                        {0.020000, -0.007000, -0.014000},
+                                                        {-0.000000, 0.010660, 0.066182},
+                                                        {0.012000, 0.000000, 0.000000},
+                                                        {0.039299, 0.005000, -0.034842},
+                                                        {-0.006500, 0.000000, 0.024000},
                                                         {0.009000, 0.000000, 0.000000},
-                                                        {0.013000, 0.000000, 0.000000},
-                                                        {0.013000, 0.000000, 0.000000},
-                                                        {0.017000, 0.000000, 0.000000},
+                                                        {0.041000, 0.000000, 0.000000},
                                                         {0.009000, 0.000000, 0.000000},
-                                                        {0.013000, 0.000000, 0.000000},
-                                                        {-0.044000, -0.046500, 0.002000},
-                                                        {0.025500, 0.003800, -0.000120},
-                                                        {0.013000, 0.000000, 0.000000},
+                                                        {0.041000, 0.000000, 0.000000},
                                                         {0.009000, 0.000000, 0.000000},
-                                                        {0.013000, 0.000000, 0.000000},
+                                                        {0.008636, 0.005000, -0.044486},
+                                                        {-0.006500, 0.000000, 0.024000},
+                                                        {0.009000, 0.000000, 0.000000},
+                                                        {0.041000, 0.000000, 0.000000},
+                                                        {0.009000, 0.000000, 0.000000},
+                                                        {0.041000, 0.000000, 0.000000},
+                                                        {0.009000, 0.000000, 0.000000},
+                                                        {-0.000000, -0.032506, 0.039640},
+                                                        {-0.000000, -0.012000, 0.000000},
+                                                        {0.005000, -0.024234, 0.009130},
+                                                        {0.000000, 0.021958, 0.002800},
+                                                        {0.038500, 0.004830, 0.000167},
+                                                        {0.009000, 0.000000, 0.000000},
+                                                        {0.041000, 0.000000, 0.000000},
+                                                        {0.008999, 0.000000, -0.000097},
                                                         {0.000000, -0.135150, -0.242150},
                                                         {-0.060000, -0.030000, 0.125500},
                                                         {0.000000, -0.073000, -0.060150},
@@ -138,7 +147,7 @@ const double link_transform_translation_only[115][3] = {{0.000000, 0.000000, 0.0
                                                         {0.000000, 0.062877, 0.050000},
                                                         {0.000000, 0.000000, 0.000000},
                                                         {0.000000, 0.000000, 0.000000},
-                                                        {0.030000, 0.060000, 0.100000},
+                                                        {-0.060000, 0.030000, 0.160000},
                                                         {-0.004500, 0.014500, 0.144000},
                                                         {-0.020000, -0.007000, 0.014000},
                                                         {0.009000, 0.000000, 0.000000},
@@ -178,7 +187,7 @@ const double link_transform_translation_only[115][3] = {{0.000000, 0.000000, 0.0
                                                         {-0.500000, -1.250000, 1.000000},
                                                         {0.000000, 0.000000, 0.485000},
                                                         {0.000000, 1.250000, 0.485000}};
-const double link_transform_quaternion_only[115][4] = {{1.000000, 0.000000, 0.000000, 0.000000},
+const double link_transform_quaternion_only[124][4] = {{1.000000, 0.000000, 0.000000, 0.000000},
                                                        {1.000000, 0.000000, 0.000000, 0.000000},
                                                        {1.000000, 0.000000, 0.000000, 0.000000},
                                                        {1.000000, 0.000000, 0.000000, 0.000000},
@@ -189,17 +198,22 @@ const double link_transform_quaternion_only[115][4] = {{1.000000, 0.000000, 0.00
                                                        {1.000000, 0.000000, 0.000000, 0.000000},
                                                        {0.707107, 0.000000, -0.707107, 0.000000},
                                                        {0.707107, -0.707107, 0.000000, 0.000000},
+                                                       {1.000000, 0.000000, 0.000000, 0.000000},
                                                        {0.500000, 0.500000, 0.500000, 0.500000},
                                                        {0.829918, 0.000406, 0.557886, -0.000273},
                                                        {1.000000, 0.000000, 0.000000, 0.000000},
                                                        {1.000000, 0.000000, 0.000000, 0.000000},
+                                                       {0.999911, -0.003163, 0.010071, 0.008181},
+                                                       {0.500000, -0.500000, 0.500000, -0.500000},
+                                                       {0.500000, -0.500000, 0.500000, -0.500000},
+                                                       {0.999911, -0.003163, 0.010071, 0.008181},
+                                                       {0.500000, -0.500000, 0.500000, -0.500000},
                                                        {1.000000, 0.000000, 0.000000, 0.000000},
                                                        {0.500000, -0.500000, 0.500000, -0.500000},
-                                                       {0.500000, -0.500000, 0.500000, -0.500000},
                                                        {1.000000, 0.000000, 0.000000, 0.000000},
                                                        {0.500000, -0.500000, 0.500000, -0.500000},
                                                        {1.000000, 0.000000, 0.000000, 0.000000},
-                                                       {0.500000, -0.500000, 0.500000, -0.500000},
+                                                       {1.000000, 0.000000, 0.000000, 0.000000},
                                                        {0.707107, -0.707107, 0.000000, 0.000000},
                                                        {0.707107, 0.000000, -0.707107, 0.000000},
                                                        {-0.500000, -0.500000, -0.500000, 0.500000},
@@ -209,41 +223,45 @@ const double link_transform_quaternion_only[115][4] = {{1.000000, 0.000000, 0.00
                                                        {0.697409, 0.697409, 0.116706, -0.116706},
                                                        {1.000000, 0.000000, 0.000000, 0.000000},
                                                        {0.707107, 0.000000, 0.000000, 0.707107},
-                                                       {0.707388, 0.000000, 0.000000, 0.706825},
-                                                       {0.000563, 0.000563, 0.706825, 0.707388},
-                                                       {0.000563, 0.706825, 0.707388, -0.000563},
-                                                       {0.707388, 0.706825, 0.000000, 0.000000},
+                                                       {1.000000, 0.000000, 0.000000, 0.000000},
+                                                       {0.996182, 0.087305, 0.000000, 0.000000},
+                                                       {0.500000, -0.500000, -0.500000, -0.500000},
                                                        {1.000000, 0.000000, 0.000000, 0.000000},
                                                        {1.000000, 0.000000, 0.000000, 0.000000},
                                                        {1.000000, 0.000000, 0.000000, 0.000000},
                                                        {1.000000, 0.000000, 0.000000, 0.000000},
                                                        {1.000000, 0.000000, 0.000000, 0.000000},
-                                                       {0.000563, 0.706825, 0.707388, -0.000563},
-                                                       {0.707388, 0.706825, 0.000000, 0.000000},
+                                                       {1.000000, 0.000000, 0.000000, 0.000000},
+                                                       {0.500000, -0.500000, -0.500000, -0.500000},
                                                        {1.000000, 0.000000, 0.000000, 0.000000},
                                                        {1.000000, 0.000000, 0.000000, 0.000000},
                                                        {1.000000, 0.000000, 0.000000, 0.000000},
                                                        {1.000000, 0.000000, 0.000000, 0.000000},
                                                        {1.000000, 0.000000, 0.000000, 0.000000},
-                                                       {0.000563, 0.706825, 0.707388, -0.000563},
-                                                       {0.707388, 0.706825, 0.000000, 0.000000},
+                                                       {-0.061628, 0.704416, 0.704416, 0.061628},
+                                                       {1.000000, 0.000000, 0.000000, 0.000000},
+                                                       {0.122788, 0.696364, 0.696364, 0.122788},
+                                                       {0.500000, -0.500000, -0.500000, -0.500000},
                                                        {1.000000, 0.000000, 0.000000, 0.000000},
                                                        {1.000000, 0.000000, 0.000000, 0.000000},
                                                        {1.000000, 0.000000, 0.000000, 0.000000},
                                                        {1.000000, 0.000000, 0.000000, 0.000000},
                                                        {1.000000, 0.000000, 0.000000, 0.000000},
-                                                       {0.000563, 0.706825, 0.707388, -0.000563},
-                                                       {0.707388, 0.706825, 0.000000, 0.000000},
+                                                       {0.092296, 0.701057, 0.701057, 0.092296},
+                                                       {0.500000, -0.500000, -0.500000, -0.500000},
                                                        {1.000000, 0.000000, 0.000000, 0.000000},
                                                        {1.000000, 0.000000, 0.000000, 0.000000},
                                                        {1.000000, 0.000000, 0.000000, 0.000000},
                                                        {1.000000, 0.000000, 0.000000, 0.000000},
                                                        {1.000000, 0.000000, 0.000000, 0.000000},
-                                                       {0.000563, -0.000563, 0.707388, 0.706825},
-                                                       {0.540302, -0.841471, 0.000000, 0.000000},
+                                                       {0.984808, 0.173648, 0.000000, 0.000000},
+                                                       {1.000000, 0.000000, 0.000000, 0.000000},
+                                                       {0.353553, 0.612373, 0.353553, 0.612373},
+                                                       {0.500000, 0.500000, 0.500000, 0.500000},
+                                                       {0.766044, 0.642788, 0.000000, 0.000000},
                                                        {1.000000, 0.000000, 0.000000, 0.000000},
                                                        {1.000000, 0.000000, 0.000000, 0.000000},
-                                                       {1.000000, 0.000000, 0.000000, 0.000000},
+                                                       {0.999987, 0.000000, 0.005061, 0.000000},
                                                        {0.707107, 0.707107, 0.000000, 0.000000},
                                                        {0.707107, 0.000000, -0.707107, 0.000000},
                                                        {0.500000, -0.500000, 0.500000, 0.500000},
@@ -252,7 +270,7 @@ const double link_transform_quaternion_only[115][4] = {{1.000000, 0.000000, 0.00
                                                        {0.707107, -0.707107, 0.000000, 0.000000},
                                                        {0.697409, -0.697409, 0.116706, 0.116706},
                                                        {1.000000, 0.000000, 0.000000, 0.000000},
-                                                       {0.707107, 0.000000, 0.000000, 0.707107},
+                                                       {-0.000000, 0.000000, 0.000000, 1.000000},
                                                        {0.707388, 0.000000, 0.000000, 0.706825},
                                                        {0.707388, 0.706825, 0.000000, 0.000000},
                                                        {0.707388, 0.000000, 0.000000, 0.706825},
@@ -293,2192 +311,211 @@ const double link_transform_quaternion_only[115][4] = {{1.000000, 0.000000, 0.00
                                                        {1.000000, 0.000000, 0.000000, 0.000000},
                                                        {1.000000, 0.000000, 0.000000, 0.000000},
                                                        {0.707107, -0.707107, 0.000000, 0.000000}};
-const int link_can_skip_translation[115] = {1,1,0,0,0,0,0,0,0,0,0,1,0,0,1,0,1,1,1,1,0,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}; // bool
-const int link_can_skip_rotation[115] = {1,1,1,1,0,1,1,1,1,0,0,0,0,1,1,1,0,0,1,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1,1,1,1,0,0,1,1,1,1,1,0,0,1,1,1,1,1,0,0,1,1,1,1,1,0,0,1,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1,1,1,1,0,0,1,1,1,1,1,0,0,1,1,1,1,1,0,0,1,1,1,1,1,0,0,1,1,1,0,0,1,1,0}; // bool
+const int link_can_skip_translation[124] = {1,1,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,1,1,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}; // bool
+const int link_can_skip_rotation[124] = {1,1,1,1,0,1,1,1,1,0,0,1,0,0,1,1,0,0,0,0,0,1,0,1,0,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,1,1,1,1,1,0,1,1,1,1,1,0,1,0,0,1,1,1,1,1,0,0,1,1,1,1,1,0,1,0,0,0,1,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1,1,1,1,0,0,1,1,1,1,1,0,0,1,1,1,1,1,0,0,1,1,1,1,1,0,0,1,1,1,0,0,1,1,0}; // bool
 
 // ACM
-const int acm[115][115]= {{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,1,1,1,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,1,1,1,1},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,1,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,1,1,1,1},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,1,1,1,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,1,1,1,1},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,0,1,0,1,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,1,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,1,1,1,1},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,1,1,0,1,1,1,1,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,1,1,1,1},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,1,1,0,1,1,1,1,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,1,1,1,1},
-                          {1,1,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0,1,0,1,1,1,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,1,1,1,0},
-                          {1,1,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,0,1,0,1,0,1,1,0,1,0,1,0,1,1,1,1,0,1,0,1,1,1,1,0,1,0,1,1,1,1,0,1,1,1,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,1,1,1,0},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,1,1,0,1,0,0,1,1,1,0,1,0,0,1,0,1,0,1,1,1,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
-                          {1,0,1,1,0,1,0,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,0,0,0,1,0,1,1,1,1,1,1,1,1,0,1,1,1,0,1,1,0,1,1,1,0,1,1,0,1,1,1,0,1,1,0,1,1,1,0,1,1,1,1,0,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1,0,1,0,1,1,0,1,0,1,0,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1,1,0,1,0,1,0,1,1,0,1,0,1,0,1,1,1,1,0,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1,1,0,1,0,1,0,1,1,0,1,0,1,0,0,1,0,1,0,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,0,0,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,1,0,1,1,0,1,0,1,0,1,0,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,1,0,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,0,1,0,1,0,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,0,1,1,1,1,0,1,0,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,0,1,0,1,0,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,0,1,0,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,0,1,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,0,1,1,0,1,0,1,0,0,1,1,1,0,1,0,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,0,0,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,0,1,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,0,1,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,1,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,0,1,1,1,1,0,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,1,1,1,1,1,0,1,1,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,1,1,0,1,1,1,1,1},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,1,1,1,1,1,0,1,1,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0,1,0,1,1,1,1,1},
-                          {1,1,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,1,1,1,1,1,0,1,1,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0,1,0,1,1,1,1,0},
-                          {1,1,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,1,1,0,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,1,1,1,1,1,0,1,1,1,1,1,1,0,1,0,1,0,1,1,0,1,0,1,0,1,1,1,1,0,1,0,1,1,1,1,0,1,0,1,1,1,1,0,1,1,1,1,0},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,1,1,1,1,1,1,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,1,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,1,0,0},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,0,0,0,1,0,1,1,1,1,1,1,1,1,0,1,1,1,0,1,1,0,1,1,1,0,1,1,0,1,1,1,0,1,1,0,1,1,1,0,1,1,1,1,1,1,0,1,1,0},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,0,0,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,0,0,0,0,0,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1,0,1,0,1,1,0,1,0,1,0,1,1,1,1,1,1,0,1,1,0},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1,1,0,1,0,1,0,1,1,0,1,0,1,0,1,1,1,1,0,1,0,1,1,0},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,0,0,0,0,0,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,0,1,0,1,1,0,1,0,1,0,1,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,0,0,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1,1,1,1,1,1,1,1,1,1,0,1,1,0},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,0,0,0,0,0,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,0,1,0,1,0,1,0,1,1,1,1,1,1,0,1,1,0},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,1,0,1,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,0,1,0,1,0,1,1,1,1,1,1,0,1,1,0},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,0,0,0,0,0,1,1,1,1,1,0,1,1,1,1,0,1,0,1,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,0,1,0,1,0,1,1,1,1,1,1,0,1,1,0},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,0,0,0,1,1,1,1,1,1,1,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1,1,1,1,1,1,1,1,1,1,0,1,1,0},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,0,0,0,1,1,1,1,1,1,1,0,1,1,0,1,0,1,0,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,0,1,1,0},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,0,1,0,1,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,0,1,1,0},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,0,0,0,0,0,1,1,1,1,1,0,1,1,0,1,0,1,0,1,1,1,1,0,1,0,1,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,0,1,1,0},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,0,0,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,0,1,1,0},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,0,0,0,1,0,1,1,1,1,1,0,1,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,0,1,0,1,0,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,0,0,0,0,0,1,1,1,1,1,0,1,1,0,1,0,1,0,1,1,0,1,0,1,0,1,1,0,1,0,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,0,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,1,1,1,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,1,1,1,1},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,1,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,1,1,1,1}};
+const int acm[124][124]= {{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,0,1,0,1,0,1,1,1,1,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,1,1,1,1},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1,1,1,1,0,1,0,1,1,1,1,1,1,0,1,0,1,1,1,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,0,1,0,1,0,1,1,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,1,1,1,1},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,0,1,0,1,0,1,1,1,1,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,1,1,1,1},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,0,1,0,1,0,1,1,1,1,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,1,1,1,1},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,1,1,1,1},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,1,1,1,1},
+                          {1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,1,1,1,0,1,0,1,1,1,1,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,1,1,1,0},
+                          {1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,0,1,0,1,0,1,1,1,1,1,0,1,0,1,1,1,1,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,1,1,1,0},
+                          {1,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1,1,1,0,1,0,1,0,1,0,1,1,1,1,0,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,0,1,0,1,1,1,1,1,0,0,0,1,0,1,1,1,1,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,1,1,1,0},
+                          {1,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,1,1,1,0},
+                          {1,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,1,1,1,0},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,0,1,1,1,1,0,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,0,1,1,0,1,0,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
+                          {1,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,0,1,1,1,1,0,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,0,1,1,0,1,0,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
+                          {1,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,0,1,1,1,1,0,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,0,1,1,0,1,0,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
+                          {1,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,0,1,1,1,1,0,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,0,1,1,0,1,0,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
+                          {1,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
+                          {1,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,0},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,1,1,1,0,1,1,1,1,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,1,1,1,1},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,1,1,1,1},
+                          {1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,0,1,0,1,0,1,1,1,1,0,1,1,1,1,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,1,1,1,0},
+                          {1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0},
+                          {1,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,0,1,0,1,0,0,1,0,1,1,1,0,1,0,1,0,0,1,0,1,1,1,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,0},
+                          {1,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0},
+                          {1,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,0,1,0,1,0,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,0,1,0,1,0,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,0,1,0,1,0,0,0,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0},
+                          {1,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,0,1,0,1,0,0,0,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,0,1,0,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,0,1,0,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,0,1,0,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,0},
+                          {1,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,0,1,0,1,0,0,0,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,0,1,0,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,0,1,0,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,0,1,0,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0},
+                          {1,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,0,1,0,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,0,1,0,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,0,1,0,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,0,1,0,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,0},
+                          {1,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,0,1,0,1,0,0,0,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,0,1,0,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,0,1,0,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,0,1,0,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,0},
+                          {1,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,0,1,0,1,0,0,0,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,0,1,0,1,0,0,0,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,0,1,0,1,0,0,0,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,0,1,0,1,0,1,1,1,1,1,1,1,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,1,1,1,1},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1},
+                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,0,1,0,1,0,1,1,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,1,1,1,1}};
 
 // Objective weights
-const double weight_preferred_joint_position_goal[115] = {1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000};
+const double weight_preferred_joint_position_goal[124] = {1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000};
 
 // Collision objects info
-const double object_transform_translation_only[1030][3] = {{0.000000, 0.000000, 0.025000},
-                                                           {0.030000, 0.025000, 0.125000},
-                                                           {0.000000, 0.000000, -0.020000},
-                                                           {0.000000, 0.085000, -0.060000},
-                                                           {0.000000, 0.000000, -0.100000},
-                                                           {-0.025000, 0.000000, -0.200000},
-                                                           {0.025000, -0.030000, -0.300000},
-                                                           {0.000000, 0.000000, -0.025000},
-                                                           {0.000000, 0.050000, -0.050000},
-                                                           {0.000000, 0.000000, -0.070000},
-                                                           {0.000000, 0.070000, -0.150000},
-                                                           {0.000000, 0.100000, -0.250000},
-                                                           {0.000000, 0.025000, 0.050000},
-                                                           {0.000000, 0.000000, 0.000000},
-                                                           {-0.010000, 0.000000, 0.140000},
-                                                           {0.000000, 0.000000, 0.025000},
-                                                           {0.030000, -0.025000, 0.125000},
-                                                           {0.000000, 0.000000, -0.020000},
-                                                           {0.000000, -0.085000, -0.060000},
-                                                           {0.000000, 0.000000, -0.100000},
-                                                           {-0.025000, 0.000000, -0.200000},
-                                                           {0.025000, 0.030000, -0.300000},
-                                                           {0.000000, 0.000000, -0.025000},
-                                                           {0.000000, -0.050000, -0.050000},
-                                                           {0.000000, 0.000000, -0.070000},
-                                                           {0.000000, -0.070000, -0.150000},
-                                                           {0.000000, -0.100000, -0.250000},
-                                                           {0.000000, -0.025000, 0.050000},
-                                                           {0.000000, 0.000000, 0.000000},
-                                                           {0.010000, 0.000000, 0.140000},
-                                                           {-0.500000, -1.250000, 0.975000},
-                                                           {-0.500000, -1.200000, 0.975000},
-                                                           {-0.500000, -1.150000, 0.975000},
-                                                           {-0.500000, -1.100000, 0.975000},
-                                                           {-0.500000, -1.050000, 0.975000},
-                                                           {-0.500000, -1.000000, 0.975000},
-                                                           {-0.500000, -0.950000, 0.975000},
-                                                           {-0.500000, -0.900000, 0.975000},
-                                                           {-0.500000, -0.850000, 0.975000},
-                                                           {-0.500000, -0.800000, 0.975000},
-                                                           {-0.500000, -0.750000, 0.975000},
-                                                           {-0.500000, -0.700000, 0.975000},
-                                                           {-0.500000, -0.650000, 0.975000},
-                                                           {-0.500000, -0.600000, 0.975000},
-                                                           {-0.500000, -0.550000, 0.975000},
-                                                           {-0.500000, -0.500000, 0.975000},
-                                                           {-0.500000, -0.450000, 0.975000},
-                                                           {-0.500000, -0.400000, 0.975000},
-                                                           {-0.500000, -0.350000, 0.975000},
-                                                           {-0.500000, -0.300000, 0.975000},
-                                                           {-0.500000, -0.250000, 0.975000},
-                                                           {-0.500000, -0.200000, 0.975000},
-                                                           {-0.500000, -0.150000, 0.975000},
-                                                           {-0.500000, -0.100000, 0.975000},
-                                                           {-0.500000, -0.050000, 0.975000},
-                                                           {-0.500000, 0.000000, 0.975000},
-                                                           {-0.500000, 0.050000, 0.975000},
-                                                           {-0.500000, 0.100000, 0.975000},
-                                                           {-0.500000, 0.150000, 0.975000},
-                                                           {-0.500000, 0.200000, 0.975000},
-                                                           {-0.500000, 0.250000, 0.975000},
-                                                           {-0.500000, 0.300000, 0.975000},
-                                                           {-0.500000, 0.350000, 0.975000},
-                                                           {-0.500000, 0.400000, 0.975000},
-                                                           {-0.500000, 0.450000, 0.975000},
-                                                           {-0.500000, 0.500000, 0.975000},
-                                                           {-0.500000, 0.550000, 0.975000},
-                                                           {-0.500000, 0.600000, 0.975000},
-                                                           {-0.500000, 0.650000, 0.975000},
-                                                           {-0.500000, 0.700000, 0.975000},
-                                                           {-0.500000, 0.750000, 0.975000},
-                                                           {-0.500000, 0.800000, 0.975000},
-                                                           {-0.500000, 0.850000, 0.975000},
-                                                           {-0.500000, 0.900000, 0.975000},
-                                                           {-0.500000, 0.950000, 0.975000},
-                                                           {-0.500000, 1.000000, 0.975000},
-                                                           {-0.500000, 1.050000, 0.975000},
-                                                           {-0.500000, 1.100000, 0.975000},
-                                                           {-0.500000, 1.150000, 0.975000},
-                                                           {-0.500000, 1.200000, 0.975000},
-                                                           {-0.450000, -1.250000, 0.975000},
-                                                           {-0.450000, -1.200000, 0.975000},
-                                                           {-0.450000, -1.150000, 0.975000},
-                                                           {-0.450000, -1.100000, 0.975000},
-                                                           {-0.450000, -1.050000, 0.975000},
-                                                           {-0.450000, -1.000000, 0.975000},
-                                                           {-0.450000, -0.950000, 0.975000},
-                                                           {-0.450000, -0.900000, 0.975000},
-                                                           {-0.450000, -0.850000, 0.975000},
-                                                           {-0.450000, -0.800000, 0.975000},
-                                                           {-0.450000, -0.750000, 0.975000},
-                                                           {-0.450000, -0.700000, 0.975000},
-                                                           {-0.450000, -0.650000, 0.975000},
-                                                           {-0.450000, -0.600000, 0.975000},
-                                                           {-0.450000, -0.550000, 0.975000},
-                                                           {-0.450000, -0.500000, 0.975000},
-                                                           {-0.450000, -0.450000, 0.975000},
-                                                           {-0.450000, -0.400000, 0.975000},
-                                                           {-0.450000, -0.350000, 0.975000},
-                                                           {-0.450000, -0.300000, 0.975000},
-                                                           {-0.450000, -0.250000, 0.975000},
-                                                           {-0.450000, -0.200000, 0.975000},
-                                                           {-0.450000, -0.150000, 0.975000},
-                                                           {-0.450000, -0.100000, 0.975000},
-                                                           {-0.450000, -0.050000, 0.975000},
-                                                           {-0.450000, 0.000000, 0.975000},
-                                                           {-0.450000, 0.050000, 0.975000},
-                                                           {-0.450000, 0.100000, 0.975000},
-                                                           {-0.450000, 0.150000, 0.975000},
-                                                           {-0.450000, 0.200000, 0.975000},
-                                                           {-0.450000, 0.250000, 0.975000},
-                                                           {-0.450000, 0.300000, 0.975000},
-                                                           {-0.450000, 0.350000, 0.975000},
-                                                           {-0.450000, 0.400000, 0.975000},
-                                                           {-0.450000, 0.450000, 0.975000},
-                                                           {-0.450000, 0.500000, 0.975000},
-                                                           {-0.450000, 0.550000, 0.975000},
-                                                           {-0.450000, 0.600000, 0.975000},
-                                                           {-0.450000, 0.650000, 0.975000},
-                                                           {-0.450000, 0.700000, 0.975000},
-                                                           {-0.450000, 0.750000, 0.975000},
-                                                           {-0.450000, 0.800000, 0.975000},
-                                                           {-0.450000, 0.850000, 0.975000},
-                                                           {-0.450000, 0.900000, 0.975000},
-                                                           {-0.450000, 0.950000, 0.975000},
-                                                           {-0.450000, 1.000000, 0.975000},
-                                                           {-0.450000, 1.050000, 0.975000},
-                                                           {-0.450000, 1.100000, 0.975000},
-                                                           {-0.450000, 1.150000, 0.975000},
-                                                           {-0.450000, 1.200000, 0.975000},
-                                                           {-0.400000, -1.250000, 0.975000},
-                                                           {-0.400000, -1.200000, 0.975000},
-                                                           {-0.400000, -1.150000, 0.975000},
-                                                           {-0.400000, -1.100000, 0.975000},
-                                                           {-0.400000, -1.050000, 0.975000},
-                                                           {-0.400000, -1.000000, 0.975000},
-                                                           {-0.400000, -0.950000, 0.975000},
-                                                           {-0.400000, -0.900000, 0.975000},
-                                                           {-0.400000, -0.850000, 0.975000},
-                                                           {-0.400000, -0.800000, 0.975000},
-                                                           {-0.400000, -0.750000, 0.975000},
-                                                           {-0.400000, -0.700000, 0.975000},
-                                                           {-0.400000, -0.650000, 0.975000},
-                                                           {-0.400000, -0.600000, 0.975000},
-                                                           {-0.400000, -0.550000, 0.975000},
-                                                           {-0.400000, -0.500000, 0.975000},
-                                                           {-0.400000, -0.450000, 0.975000},
-                                                           {-0.400000, -0.400000, 0.975000},
-                                                           {-0.400000, -0.350000, 0.975000},
-                                                           {-0.400000, -0.300000, 0.975000},
-                                                           {-0.400000, -0.250000, 0.975000},
-                                                           {-0.400000, -0.200000, 0.975000},
-                                                           {-0.400000, -0.150000, 0.975000},
-                                                           {-0.400000, -0.100000, 0.975000},
-                                                           {-0.400000, -0.050000, 0.975000},
-                                                           {-0.400000, 0.000000, 0.975000},
-                                                           {-0.400000, 0.050000, 0.975000},
-                                                           {-0.400000, 0.100000, 0.975000},
-                                                           {-0.400000, 0.150000, 0.975000},
-                                                           {-0.400000, 0.200000, 0.975000},
-                                                           {-0.400000, 0.250000, 0.975000},
-                                                           {-0.400000, 0.300000, 0.975000},
-                                                           {-0.400000, 0.350000, 0.975000},
-                                                           {-0.400000, 0.400000, 0.975000},
-                                                           {-0.400000, 0.450000, 0.975000},
-                                                           {-0.400000, 0.500000, 0.975000},
-                                                           {-0.400000, 0.550000, 0.975000},
-                                                           {-0.400000, 0.600000, 0.975000},
-                                                           {-0.400000, 0.650000, 0.975000},
-                                                           {-0.400000, 0.700000, 0.975000},
-                                                           {-0.400000, 0.750000, 0.975000},
-                                                           {-0.400000, 0.800000, 0.975000},
-                                                           {-0.400000, 0.850000, 0.975000},
-                                                           {-0.400000, 0.900000, 0.975000},
-                                                           {-0.400000, 0.950000, 0.975000},
-                                                           {-0.400000, 1.000000, 0.975000},
-                                                           {-0.400000, 1.050000, 0.975000},
-                                                           {-0.400000, 1.100000, 0.975000},
-                                                           {-0.400000, 1.150000, 0.975000},
-                                                           {-0.400000, 1.200000, 0.975000},
-                                                           {-0.350000, -1.250000, 0.975000},
-                                                           {-0.350000, -1.200000, 0.975000},
-                                                           {-0.350000, -1.150000, 0.975000},
-                                                           {-0.350000, -1.100000, 0.975000},
-                                                           {-0.350000, -1.050000, 0.975000},
-                                                           {-0.350000, -1.000000, 0.975000},
-                                                           {-0.350000, -0.950000, 0.975000},
-                                                           {-0.350000, -0.900000, 0.975000},
-                                                           {-0.350000, -0.850000, 0.975000},
-                                                           {-0.350000, -0.800000, 0.975000},
-                                                           {-0.350000, -0.750000, 0.975000},
-                                                           {-0.350000, -0.700000, 0.975000},
-                                                           {-0.350000, -0.650000, 0.975000},
-                                                           {-0.350000, -0.600000, 0.975000},
-                                                           {-0.350000, -0.550000, 0.975000},
-                                                           {-0.350000, -0.500000, 0.975000},
-                                                           {-0.350000, -0.450000, 0.975000},
-                                                           {-0.350000, -0.400000, 0.975000},
-                                                           {-0.350000, -0.350000, 0.975000},
-                                                           {-0.350000, -0.300000, 0.975000},
-                                                           {-0.350000, -0.250000, 0.975000},
-                                                           {-0.350000, -0.200000, 0.975000},
-                                                           {-0.350000, -0.150000, 0.975000},
-                                                           {-0.350000, -0.100000, 0.975000},
-                                                           {-0.350000, -0.050000, 0.975000},
-                                                           {-0.350000, 0.000000, 0.975000},
-                                                           {-0.350000, 0.050000, 0.975000},
-                                                           {-0.350000, 0.100000, 0.975000},
-                                                           {-0.350000, 0.150000, 0.975000},
-                                                           {-0.350000, 0.200000, 0.975000},
-                                                           {-0.350000, 0.250000, 0.975000},
-                                                           {-0.350000, 0.300000, 0.975000},
-                                                           {-0.350000, 0.350000, 0.975000},
-                                                           {-0.350000, 0.400000, 0.975000},
-                                                           {-0.350000, 0.450000, 0.975000},
-                                                           {-0.350000, 0.500000, 0.975000},
-                                                           {-0.350000, 0.550000, 0.975000},
-                                                           {-0.350000, 0.600000, 0.975000},
-                                                           {-0.350000, 0.650000, 0.975000},
-                                                           {-0.350000, 0.700000, 0.975000},
-                                                           {-0.350000, 0.750000, 0.975000},
-                                                           {-0.350000, 0.800000, 0.975000},
-                                                           {-0.350000, 0.850000, 0.975000},
-                                                           {-0.350000, 0.900000, 0.975000},
-                                                           {-0.350000, 0.950000, 0.975000},
-                                                           {-0.350000, 1.000000, 0.975000},
-                                                           {-0.350000, 1.050000, 0.975000},
-                                                           {-0.350000, 1.100000, 0.975000},
-                                                           {-0.350000, 1.150000, 0.975000},
-                                                           {-0.350000, 1.200000, 0.975000},
-                                                           {-0.300000, -1.250000, 0.975000},
-                                                           {-0.300000, -1.200000, 0.975000},
-                                                           {-0.300000, -1.150000, 0.975000},
-                                                           {-0.300000, -1.100000, 0.975000},
-                                                           {-0.300000, -1.050000, 0.975000},
-                                                           {-0.300000, -1.000000, 0.975000},
-                                                           {-0.300000, -0.950000, 0.975000},
-                                                           {-0.300000, -0.900000, 0.975000},
-                                                           {-0.300000, -0.850000, 0.975000},
-                                                           {-0.300000, -0.800000, 0.975000},
-                                                           {-0.300000, -0.750000, 0.975000},
-                                                           {-0.300000, -0.700000, 0.975000},
-                                                           {-0.300000, -0.650000, 0.975000},
-                                                           {-0.300000, -0.600000, 0.975000},
-                                                           {-0.300000, -0.550000, 0.975000},
-                                                           {-0.300000, -0.500000, 0.975000},
-                                                           {-0.300000, -0.450000, 0.975000},
-                                                           {-0.300000, -0.400000, 0.975000},
-                                                           {-0.300000, -0.350000, 0.975000},
-                                                           {-0.300000, -0.300000, 0.975000},
-                                                           {-0.300000, -0.250000, 0.975000},
-                                                           {-0.300000, -0.200000, 0.975000},
-                                                           {-0.300000, -0.150000, 0.975000},
-                                                           {-0.300000, -0.100000, 0.975000},
-                                                           {-0.300000, -0.050000, 0.975000},
-                                                           {-0.300000, 0.000000, 0.975000},
-                                                           {-0.300000, 0.050000, 0.975000},
-                                                           {-0.300000, 0.100000, 0.975000},
-                                                           {-0.300000, 0.150000, 0.975000},
-                                                           {-0.300000, 0.200000, 0.975000},
-                                                           {-0.300000, 0.250000, 0.975000},
-                                                           {-0.300000, 0.300000, 0.975000},
-                                                           {-0.300000, 0.350000, 0.975000},
-                                                           {-0.300000, 0.400000, 0.975000},
-                                                           {-0.300000, 0.450000, 0.975000},
-                                                           {-0.300000, 0.500000, 0.975000},
-                                                           {-0.300000, 0.550000, 0.975000},
-                                                           {-0.300000, 0.600000, 0.975000},
-                                                           {-0.300000, 0.650000, 0.975000},
-                                                           {-0.300000, 0.700000, 0.975000},
-                                                           {-0.300000, 0.750000, 0.975000},
-                                                           {-0.300000, 0.800000, 0.975000},
-                                                           {-0.300000, 0.850000, 0.975000},
-                                                           {-0.300000, 0.900000, 0.975000},
-                                                           {-0.300000, 0.950000, 0.975000},
-                                                           {-0.300000, 1.000000, 0.975000},
-                                                           {-0.300000, 1.050000, 0.975000},
-                                                           {-0.300000, 1.100000, 0.975000},
-                                                           {-0.300000, 1.150000, 0.975000},
-                                                           {-0.300000, 1.200000, 0.975000},
-                                                           {-0.250000, -1.250000, 0.975000},
-                                                           {-0.250000, -1.200000, 0.975000},
-                                                           {-0.250000, -1.150000, 0.975000},
-                                                           {-0.250000, -1.100000, 0.975000},
-                                                           {-0.250000, -1.050000, 0.975000},
-                                                           {-0.250000, -1.000000, 0.975000},
-                                                           {-0.250000, -0.950000, 0.975000},
-                                                           {-0.250000, -0.900000, 0.975000},
-                                                           {-0.250000, -0.850000, 0.975000},
-                                                           {-0.250000, -0.800000, 0.975000},
-                                                           {-0.250000, -0.750000, 0.975000},
-                                                           {-0.250000, -0.700000, 0.975000},
-                                                           {-0.250000, -0.650000, 0.975000},
-                                                           {-0.250000, -0.600000, 0.975000},
-                                                           {-0.250000, -0.550000, 0.975000},
-                                                           {-0.250000, -0.500000, 0.975000},
-                                                           {-0.250000, -0.450000, 0.975000},
-                                                           {-0.250000, -0.400000, 0.975000},
-                                                           {-0.250000, -0.350000, 0.975000},
-                                                           {-0.250000, -0.300000, 0.975000},
-                                                           {-0.250000, -0.250000, 0.975000},
-                                                           {-0.250000, -0.200000, 0.975000},
-                                                           {-0.250000, -0.150000, 0.975000},
-                                                           {-0.250000, -0.100000, 0.975000},
-                                                           {-0.250000, -0.050000, 0.975000},
-                                                           {-0.250000, 0.000000, 0.975000},
-                                                           {-0.250000, 0.050000, 0.975000},
-                                                           {-0.250000, 0.100000, 0.975000},
-                                                           {-0.250000, 0.150000, 0.975000},
-                                                           {-0.250000, 0.200000, 0.975000},
-                                                           {-0.250000, 0.250000, 0.975000},
-                                                           {-0.250000, 0.300000, 0.975000},
-                                                           {-0.250000, 0.350000, 0.975000},
-                                                           {-0.250000, 0.400000, 0.975000},
-                                                           {-0.250000, 0.450000, 0.975000},
-                                                           {-0.250000, 0.500000, 0.975000},
-                                                           {-0.250000, 0.550000, 0.975000},
-                                                           {-0.250000, 0.600000, 0.975000},
-                                                           {-0.250000, 0.650000, 0.975000},
-                                                           {-0.250000, 0.700000, 0.975000},
-                                                           {-0.250000, 0.750000, 0.975000},
-                                                           {-0.250000, 0.800000, 0.975000},
-                                                           {-0.250000, 0.850000, 0.975000},
-                                                           {-0.250000, 0.900000, 0.975000},
-                                                           {-0.250000, 0.950000, 0.975000},
-                                                           {-0.250000, 1.000000, 0.975000},
-                                                           {-0.250000, 1.050000, 0.975000},
-                                                           {-0.250000, 1.100000, 0.975000},
-                                                           {-0.250000, 1.150000, 0.975000},
-                                                           {-0.250000, 1.200000, 0.975000},
-                                                           {-0.200000, -1.250000, 0.975000},
-                                                           {-0.200000, -1.200000, 0.975000},
-                                                           {-0.200000, -1.150000, 0.975000},
-                                                           {-0.200000, -1.100000, 0.975000},
-                                                           {-0.200000, -1.050000, 0.975000},
-                                                           {-0.200000, -1.000000, 0.975000},
-                                                           {-0.200000, -0.950000, 0.975000},
-                                                           {-0.200000, -0.900000, 0.975000},
-                                                           {-0.200000, -0.850000, 0.975000},
-                                                           {-0.200000, -0.800000, 0.975000},
-                                                           {-0.200000, -0.750000, 0.975000},
-                                                           {-0.200000, -0.700000, 0.975000},
-                                                           {-0.200000, -0.650000, 0.975000},
-                                                           {-0.200000, -0.600000, 0.975000},
-                                                           {-0.200000, -0.550000, 0.975000},
-                                                           {-0.200000, -0.500000, 0.975000},
-                                                           {-0.200000, -0.450000, 0.975000},
-                                                           {-0.200000, -0.400000, 0.975000},
-                                                           {-0.200000, -0.350000, 0.975000},
-                                                           {-0.200000, -0.300000, 0.975000},
-                                                           {-0.200000, -0.250000, 0.975000},
-                                                           {-0.200000, -0.200000, 0.975000},
-                                                           {-0.200000, -0.150000, 0.975000},
-                                                           {-0.200000, -0.100000, 0.975000},
-                                                           {-0.200000, -0.050000, 0.975000},
-                                                           {-0.200000, 0.000000, 0.975000},
-                                                           {-0.200000, 0.050000, 0.975000},
-                                                           {-0.200000, 0.100000, 0.975000},
-                                                           {-0.200000, 0.150000, 0.975000},
-                                                           {-0.200000, 0.200000, 0.975000},
-                                                           {-0.200000, 0.250000, 0.975000},
-                                                           {-0.200000, 0.300000, 0.975000},
-                                                           {-0.200000, 0.350000, 0.975000},
-                                                           {-0.200000, 0.400000, 0.975000},
-                                                           {-0.200000, 0.450000, 0.975000},
-                                                           {-0.200000, 0.500000, 0.975000},
-                                                           {-0.200000, 0.550000, 0.975000},
-                                                           {-0.200000, 0.600000, 0.975000},
-                                                           {-0.200000, 0.650000, 0.975000},
-                                                           {-0.200000, 0.700000, 0.975000},
-                                                           {-0.200000, 0.750000, 0.975000},
-                                                           {-0.200000, 0.800000, 0.975000},
-                                                           {-0.200000, 0.850000, 0.975000},
-                                                           {-0.200000, 0.900000, 0.975000},
-                                                           {-0.200000, 0.950000, 0.975000},
-                                                           {-0.200000, 1.000000, 0.975000},
-                                                           {-0.200000, 1.050000, 0.975000},
-                                                           {-0.200000, 1.100000, 0.975000},
-                                                           {-0.200000, 1.150000, 0.975000},
-                                                           {-0.200000, 1.200000, 0.975000},
-                                                           {-0.150000, -1.250000, 0.975000},
-                                                           {-0.150000, -1.200000, 0.975000},
-                                                           {-0.150000, -1.150000, 0.975000},
-                                                           {-0.150000, -1.100000, 0.975000},
-                                                           {-0.150000, -1.050000, 0.975000},
-                                                           {-0.150000, -1.000000, 0.975000},
-                                                           {-0.150000, -0.950000, 0.975000},
-                                                           {-0.150000, -0.900000, 0.975000},
-                                                           {-0.150000, -0.850000, 0.975000},
-                                                           {-0.150000, -0.800000, 0.975000},
-                                                           {-0.150000, -0.750000, 0.975000},
-                                                           {-0.150000, -0.700000, 0.975000},
-                                                           {-0.150000, -0.650000, 0.975000},
-                                                           {-0.150000, -0.600000, 0.975000},
-                                                           {-0.150000, -0.550000, 0.975000},
-                                                           {-0.150000, -0.500000, 0.975000},
-                                                           {-0.150000, -0.450000, 0.975000},
-                                                           {-0.150000, -0.400000, 0.975000},
-                                                           {-0.150000, -0.350000, 0.975000},
-                                                           {-0.150000, -0.300000, 0.975000},
-                                                           {-0.150000, -0.250000, 0.975000},
-                                                           {-0.150000, -0.200000, 0.975000},
-                                                           {-0.150000, -0.150000, 0.975000},
-                                                           {-0.150000, -0.100000, 0.975000},
-                                                           {-0.150000, -0.050000, 0.975000},
-                                                           {-0.150000, 0.000000, 0.975000},
-                                                           {-0.150000, 0.050000, 0.975000},
-                                                           {-0.150000, 0.100000, 0.975000},
-                                                           {-0.150000, 0.150000, 0.975000},
-                                                           {-0.150000, 0.200000, 0.975000},
-                                                           {-0.150000, 0.250000, 0.975000},
-                                                           {-0.150000, 0.300000, 0.975000},
-                                                           {-0.150000, 0.350000, 0.975000},
-                                                           {-0.150000, 0.400000, 0.975000},
-                                                           {-0.150000, 0.450000, 0.975000},
-                                                           {-0.150000, 0.500000, 0.975000},
-                                                           {-0.150000, 0.550000, 0.975000},
-                                                           {-0.150000, 0.600000, 0.975000},
-                                                           {-0.150000, 0.650000, 0.975000},
-                                                           {-0.150000, 0.700000, 0.975000},
-                                                           {-0.150000, 0.750000, 0.975000},
-                                                           {-0.150000, 0.800000, 0.975000},
-                                                           {-0.150000, 0.850000, 0.975000},
-                                                           {-0.150000, 0.900000, 0.975000},
-                                                           {-0.150000, 0.950000, 0.975000},
-                                                           {-0.150000, 1.000000, 0.975000},
-                                                           {-0.150000, 1.050000, 0.975000},
-                                                           {-0.150000, 1.100000, 0.975000},
-                                                           {-0.150000, 1.150000, 0.975000},
-                                                           {-0.150000, 1.200000, 0.975000},
-                                                           {-0.100000, -1.250000, 0.975000},
-                                                           {-0.100000, -1.200000, 0.975000},
-                                                           {-0.100000, -1.150000, 0.975000},
-                                                           {-0.100000, -1.100000, 0.975000},
-                                                           {-0.100000, -1.050000, 0.975000},
-                                                           {-0.100000, -1.000000, 0.975000},
-                                                           {-0.100000, -0.950000, 0.975000},
-                                                           {-0.100000, -0.900000, 0.975000},
-                                                           {-0.100000, -0.850000, 0.975000},
-                                                           {-0.100000, -0.800000, 0.975000},
-                                                           {-0.100000, -0.750000, 0.975000},
-                                                           {-0.100000, -0.700000, 0.975000},
-                                                           {-0.100000, -0.650000, 0.975000},
-                                                           {-0.100000, -0.600000, 0.975000},
-                                                           {-0.100000, -0.550000, 0.975000},
-                                                           {-0.100000, -0.500000, 0.975000},
-                                                           {-0.100000, -0.450000, 0.975000},
-                                                           {-0.100000, -0.400000, 0.975000},
-                                                           {-0.100000, -0.350000, 0.975000},
-                                                           {-0.100000, -0.300000, 0.975000},
-                                                           {-0.100000, -0.250000, 0.975000},
-                                                           {-0.100000, -0.200000, 0.975000},
-                                                           {-0.100000, -0.150000, 0.975000},
-                                                           {-0.100000, -0.100000, 0.975000},
-                                                           {-0.100000, -0.050000, 0.975000},
-                                                           {-0.100000, 0.000000, 0.975000},
-                                                           {-0.100000, 0.050000, 0.975000},
-                                                           {-0.100000, 0.100000, 0.975000},
-                                                           {-0.100000, 0.150000, 0.975000},
-                                                           {-0.100000, 0.200000, 0.975000},
-                                                           {-0.100000, 0.250000, 0.975000},
-                                                           {-0.100000, 0.300000, 0.975000},
-                                                           {-0.100000, 0.350000, 0.975000},
-                                                           {-0.100000, 0.400000, 0.975000},
-                                                           {-0.100000, 0.450000, 0.975000},
-                                                           {-0.100000, 0.500000, 0.975000},
-                                                           {-0.100000, 0.550000, 0.975000},
-                                                           {-0.100000, 0.600000, 0.975000},
-                                                           {-0.100000, 0.650000, 0.975000},
-                                                           {-0.100000, 0.700000, 0.975000},
-                                                           {-0.100000, 0.750000, 0.975000},
-                                                           {-0.100000, 0.800000, 0.975000},
-                                                           {-0.100000, 0.850000, 0.975000},
-                                                           {-0.100000, 0.900000, 0.975000},
-                                                           {-0.100000, 0.950000, 0.975000},
-                                                           {-0.100000, 1.000000, 0.975000},
-                                                           {-0.100000, 1.050000, 0.975000},
-                                                           {-0.100000, 1.100000, 0.975000},
-                                                           {-0.100000, 1.150000, 0.975000},
-                                                           {-0.100000, 1.200000, 0.975000},
-                                                           {-0.050000, -1.250000, 0.975000},
-                                                           {-0.050000, -1.200000, 0.975000},
-                                                           {-0.050000, -1.150000, 0.975000},
-                                                           {-0.050000, -1.100000, 0.975000},
-                                                           {-0.050000, -1.050000, 0.975000},
-                                                           {-0.050000, -1.000000, 0.975000},
-                                                           {-0.050000, -0.950000, 0.975000},
-                                                           {-0.050000, -0.900000, 0.975000},
-                                                           {-0.050000, -0.850000, 0.975000},
-                                                           {-0.050000, -0.800000, 0.975000},
-                                                           {-0.050000, -0.750000, 0.975000},
-                                                           {-0.050000, -0.700000, 0.975000},
-                                                           {-0.050000, -0.650000, 0.975000},
-                                                           {-0.050000, -0.600000, 0.975000},
-                                                           {-0.050000, -0.550000, 0.975000},
-                                                           {-0.050000, -0.500000, 0.975000},
-                                                           {-0.050000, -0.450000, 0.975000},
-                                                           {-0.050000, -0.400000, 0.975000},
-                                                           {-0.050000, -0.350000, 0.975000},
-                                                           {-0.050000, -0.300000, 0.975000},
-                                                           {-0.050000, -0.250000, 0.975000},
-                                                           {-0.050000, -0.200000, 0.975000},
-                                                           {-0.050000, -0.150000, 0.975000},
-                                                           {-0.050000, -0.100000, 0.975000},
-                                                           {-0.050000, -0.050000, 0.975000},
-                                                           {-0.050000, 0.000000, 0.975000},
-                                                           {-0.050000, 0.050000, 0.975000},
-                                                           {-0.050000, 0.100000, 0.975000},
-                                                           {-0.050000, 0.150000, 0.975000},
-                                                           {-0.050000, 0.200000, 0.975000},
-                                                           {-0.050000, 0.250000, 0.975000},
-                                                           {-0.050000, 0.300000, 0.975000},
-                                                           {-0.050000, 0.350000, 0.975000},
-                                                           {-0.050000, 0.400000, 0.975000},
-                                                           {-0.050000, 0.450000, 0.975000},
-                                                           {-0.050000, 0.500000, 0.975000},
-                                                           {-0.050000, 0.550000, 0.975000},
-                                                           {-0.050000, 0.600000, 0.975000},
-                                                           {-0.050000, 0.650000, 0.975000},
-                                                           {-0.050000, 0.700000, 0.975000},
-                                                           {-0.050000, 0.750000, 0.975000},
-                                                           {-0.050000, 0.800000, 0.975000},
-                                                           {-0.050000, 0.850000, 0.975000},
-                                                           {-0.050000, 0.900000, 0.975000},
-                                                           {-0.050000, 0.950000, 0.975000},
-                                                           {-0.050000, 1.000000, 0.975000},
-                                                           {-0.050000, 1.050000, 0.975000},
-                                                           {-0.050000, 1.100000, 0.975000},
-                                                           {-0.050000, 1.150000, 0.975000},
-                                                           {-0.050000, 1.200000, 0.975000},
-                                                           {0.000000, -1.250000, 0.975000},
-                                                           {0.000000, -1.200000, 0.975000},
-                                                           {0.000000, -1.150000, 0.975000},
-                                                           {0.000000, -1.100000, 0.975000},
-                                                           {0.000000, -1.050000, 0.975000},
-                                                           {0.000000, -1.000000, 0.975000},
-                                                           {0.000000, -0.950000, 0.975000},
-                                                           {0.000000, -0.900000, 0.975000},
-                                                           {0.000000, -0.850000, 0.975000},
-                                                           {0.000000, -0.800000, 0.975000},
-                                                           {0.000000, -0.750000, 0.975000},
-                                                           {0.000000, -0.700000, 0.975000},
-                                                           {0.000000, -0.650000, 0.975000},
-                                                           {0.000000, -0.600000, 0.975000},
-                                                           {0.000000, -0.550000, 0.975000},
-                                                           {0.000000, -0.500000, 0.975000},
-                                                           {0.000000, -0.450000, 0.975000},
-                                                           {0.000000, -0.400000, 0.975000},
-                                                           {0.000000, -0.350000, 0.975000},
-                                                           {0.000000, -0.300000, 0.975000},
-                                                           {0.000000, -0.250000, 0.975000},
-                                                           {0.000000, -0.200000, 0.975000},
-                                                           {0.000000, -0.150000, 0.975000},
-                                                           {0.000000, -0.100000, 0.975000},
-                                                           {0.000000, -0.050000, 0.975000},
-                                                           {0.000000, 0.000000, 0.975000},
-                                                           {0.000000, 0.050000, 0.975000},
-                                                           {0.000000, 0.100000, 0.975000},
-                                                           {0.000000, 0.150000, 0.975000},
-                                                           {0.000000, 0.200000, 0.975000},
-                                                           {0.000000, 0.250000, 0.975000},
-                                                           {0.000000, 0.300000, 0.975000},
-                                                           {0.000000, 0.350000, 0.975000},
-                                                           {0.000000, 0.400000, 0.975000},
-                                                           {0.000000, 0.450000, 0.975000},
-                                                           {0.000000, 0.500000, 0.975000},
-                                                           {0.000000, 0.550000, 0.975000},
-                                                           {0.000000, 0.600000, 0.975000},
-                                                           {0.000000, 0.650000, 0.975000},
-                                                           {0.000000, 0.700000, 0.975000},
-                                                           {0.000000, 0.750000, 0.975000},
-                                                           {0.000000, 0.800000, 0.975000},
-                                                           {0.000000, 0.850000, 0.975000},
-                                                           {0.000000, 0.900000, 0.975000},
-                                                           {0.000000, 0.950000, 0.975000},
-                                                           {0.000000, 1.000000, 0.975000},
-                                                           {0.000000, 1.050000, 0.975000},
-                                                           {0.000000, 1.100000, 0.975000},
-                                                           {0.000000, 1.150000, 0.975000},
-                                                           {0.000000, 1.200000, 0.975000},
-                                                           {0.050000, -1.250000, 0.975000},
-                                                           {0.050000, -1.200000, 0.975000},
-                                                           {0.050000, -1.150000, 0.975000},
-                                                           {0.050000, -1.100000, 0.975000},
-                                                           {0.050000, -1.050000, 0.975000},
-                                                           {0.050000, -1.000000, 0.975000},
-                                                           {0.050000, -0.950000, 0.975000},
-                                                           {0.050000, -0.900000, 0.975000},
-                                                           {0.050000, -0.850000, 0.975000},
-                                                           {0.050000, -0.800000, 0.975000},
-                                                           {0.050000, -0.750000, 0.975000},
-                                                           {0.050000, -0.700000, 0.975000},
-                                                           {0.050000, -0.650000, 0.975000},
-                                                           {0.050000, -0.600000, 0.975000},
-                                                           {0.050000, -0.550000, 0.975000},
-                                                           {0.050000, -0.500000, 0.975000},
-                                                           {0.050000, -0.450000, 0.975000},
-                                                           {0.050000, -0.400000, 0.975000},
-                                                           {0.050000, -0.350000, 0.975000},
-                                                           {0.050000, -0.300000, 0.975000},
-                                                           {0.050000, -0.250000, 0.975000},
-                                                           {0.050000, -0.200000, 0.975000},
-                                                           {0.050000, -0.150000, 0.975000},
-                                                           {0.050000, -0.100000, 0.975000},
-                                                           {0.050000, -0.050000, 0.975000},
-                                                           {0.050000, 0.000000, 0.975000},
-                                                           {0.050000, 0.050000, 0.975000},
-                                                           {0.050000, 0.100000, 0.975000},
-                                                           {0.050000, 0.150000, 0.975000},
-                                                           {0.050000, 0.200000, 0.975000},
-                                                           {0.050000, 0.250000, 0.975000},
-                                                           {0.050000, 0.300000, 0.975000},
-                                                           {0.050000, 0.350000, 0.975000},
-                                                           {0.050000, 0.400000, 0.975000},
-                                                           {0.050000, 0.450000, 0.975000},
-                                                           {0.050000, 0.500000, 0.975000},
-                                                           {0.050000, 0.550000, 0.975000},
-                                                           {0.050000, 0.600000, 0.975000},
-                                                           {0.050000, 0.650000, 0.975000},
-                                                           {0.050000, 0.700000, 0.975000},
-                                                           {0.050000, 0.750000, 0.975000},
-                                                           {0.050000, 0.800000, 0.975000},
-                                                           {0.050000, 0.850000, 0.975000},
-                                                           {0.050000, 0.900000, 0.975000},
-                                                           {0.050000, 0.950000, 0.975000},
-                                                           {0.050000, 1.000000, 0.975000},
-                                                           {0.050000, 1.050000, 0.975000},
-                                                           {0.050000, 1.100000, 0.975000},
-                                                           {0.050000, 1.150000, 0.975000},
-                                                           {0.050000, 1.200000, 0.975000},
-                                                           {0.100000, -1.250000, 0.975000},
-                                                           {0.100000, -1.200000, 0.975000},
-                                                           {0.100000, -1.150000, 0.975000},
-                                                           {0.100000, -1.100000, 0.975000},
-                                                           {0.100000, -1.050000, 0.975000},
-                                                           {0.100000, -1.000000, 0.975000},
-                                                           {0.100000, -0.950000, 0.975000},
-                                                           {0.100000, -0.900000, 0.975000},
-                                                           {0.100000, -0.850000, 0.975000},
-                                                           {0.100000, -0.800000, 0.975000},
-                                                           {0.100000, -0.750000, 0.975000},
-                                                           {0.100000, -0.700000, 0.975000},
-                                                           {0.100000, -0.650000, 0.975000},
-                                                           {0.100000, -0.600000, 0.975000},
-                                                           {0.100000, -0.550000, 0.975000},
-                                                           {0.100000, -0.500000, 0.975000},
-                                                           {0.100000, -0.450000, 0.975000},
-                                                           {0.100000, -0.400000, 0.975000},
-                                                           {0.100000, -0.350000, 0.975000},
-                                                           {0.100000, -0.300000, 0.975000},
-                                                           {0.100000, -0.250000, 0.975000},
-                                                           {0.100000, -0.200000, 0.975000},
-                                                           {0.100000, -0.150000, 0.975000},
-                                                           {0.100000, -0.100000, 0.975000},
-                                                           {0.100000, -0.050000, 0.975000},
-                                                           {0.100000, 0.000000, 0.975000},
-                                                           {0.100000, 0.050000, 0.975000},
-                                                           {0.100000, 0.100000, 0.975000},
-                                                           {0.100000, 0.150000, 0.975000},
-                                                           {0.100000, 0.200000, 0.975000},
-                                                           {0.100000, 0.250000, 0.975000},
-                                                           {0.100000, 0.300000, 0.975000},
-                                                           {0.100000, 0.350000, 0.975000},
-                                                           {0.100000, 0.400000, 0.975000},
-                                                           {0.100000, 0.450000, 0.975000},
-                                                           {0.100000, 0.500000, 0.975000},
-                                                           {0.100000, 0.550000, 0.975000},
-                                                           {0.100000, 0.600000, 0.975000},
-                                                           {0.100000, 0.650000, 0.975000},
-                                                           {0.100000, 0.700000, 0.975000},
-                                                           {0.100000, 0.750000, 0.975000},
-                                                           {0.100000, 0.800000, 0.975000},
-                                                           {0.100000, 0.850000, 0.975000},
-                                                           {0.100000, 0.900000, 0.975000},
-                                                           {0.100000, 0.950000, 0.975000},
-                                                           {0.100000, 1.000000, 0.975000},
-                                                           {0.100000, 1.050000, 0.975000},
-                                                           {0.100000, 1.100000, 0.975000},
-                                                           {0.100000, 1.150000, 0.975000},
-                                                           {0.100000, 1.200000, 0.975000},
-                                                           {0.150000, -1.250000, 0.975000},
-                                                           {0.150000, -1.200000, 0.975000},
-                                                           {0.150000, -1.150000, 0.975000},
-                                                           {0.150000, -1.100000, 0.975000},
-                                                           {0.150000, -1.050000, 0.975000},
-                                                           {0.150000, -1.000000, 0.975000},
-                                                           {0.150000, -0.950000, 0.975000},
-                                                           {0.150000, -0.900000, 0.975000},
-                                                           {0.150000, -0.850000, 0.975000},
-                                                           {0.150000, -0.800000, 0.975000},
-                                                           {0.150000, -0.750000, 0.975000},
-                                                           {0.150000, -0.700000, 0.975000},
-                                                           {0.150000, -0.650000, 0.975000},
-                                                           {0.150000, -0.600000, 0.975000},
-                                                           {0.150000, -0.550000, 0.975000},
-                                                           {0.150000, -0.500000, 0.975000},
-                                                           {0.150000, -0.450000, 0.975000},
-                                                           {0.150000, -0.400000, 0.975000},
-                                                           {0.150000, -0.350000, 0.975000},
-                                                           {0.150000, -0.300000, 0.975000},
-                                                           {0.150000, -0.250000, 0.975000},
-                                                           {0.150000, -0.200000, 0.975000},
-                                                           {0.150000, -0.150000, 0.975000},
-                                                           {0.150000, -0.100000, 0.975000},
-                                                           {0.150000, -0.050000, 0.975000},
-                                                           {0.150000, 0.000000, 0.975000},
-                                                           {0.150000, 0.050000, 0.975000},
-                                                           {0.150000, 0.100000, 0.975000},
-                                                           {0.150000, 0.150000, 0.975000},
-                                                           {0.150000, 0.200000, 0.975000},
-                                                           {0.150000, 0.250000, 0.975000},
-                                                           {0.150000, 0.300000, 0.975000},
-                                                           {0.150000, 0.350000, 0.975000},
-                                                           {0.150000, 0.400000, 0.975000},
-                                                           {0.150000, 0.450000, 0.975000},
-                                                           {0.150000, 0.500000, 0.975000},
-                                                           {0.150000, 0.550000, 0.975000},
-                                                           {0.150000, 0.600000, 0.975000},
-                                                           {0.150000, 0.650000, 0.975000},
-                                                           {0.150000, 0.700000, 0.975000},
-                                                           {0.150000, 0.750000, 0.975000},
-                                                           {0.150000, 0.800000, 0.975000},
-                                                           {0.150000, 0.850000, 0.975000},
-                                                           {0.150000, 0.900000, 0.975000},
-                                                           {0.150000, 0.950000, 0.975000},
-                                                           {0.150000, 1.000000, 0.975000},
-                                                           {0.150000, 1.050000, 0.975000},
-                                                           {0.150000, 1.100000, 0.975000},
-                                                           {0.150000, 1.150000, 0.975000},
-                                                           {0.150000, 1.200000, 0.975000},
-                                                           {0.200000, -1.250000, 0.975000},
-                                                           {0.200000, -1.200000, 0.975000},
-                                                           {0.200000, -1.150000, 0.975000},
-                                                           {0.200000, -1.100000, 0.975000},
-                                                           {0.200000, -1.050000, 0.975000},
-                                                           {0.200000, -1.000000, 0.975000},
-                                                           {0.200000, -0.950000, 0.975000},
-                                                           {0.200000, -0.900000, 0.975000},
-                                                           {0.200000, -0.850000, 0.975000},
-                                                           {0.200000, -0.800000, 0.975000},
-                                                           {0.200000, -0.750000, 0.975000},
-                                                           {0.200000, -0.700000, 0.975000},
-                                                           {0.200000, -0.650000, 0.975000},
-                                                           {0.200000, -0.600000, 0.975000},
-                                                           {0.200000, -0.550000, 0.975000},
-                                                           {0.200000, -0.500000, 0.975000},
-                                                           {0.200000, -0.450000, 0.975000},
-                                                           {0.200000, -0.400000, 0.975000},
-                                                           {0.200000, -0.350000, 0.975000},
-                                                           {0.200000, -0.300000, 0.975000},
-                                                           {0.200000, -0.250000, 0.975000},
-                                                           {0.200000, -0.200000, 0.975000},
-                                                           {0.200000, -0.150000, 0.975000},
-                                                           {0.200000, -0.100000, 0.975000},
-                                                           {0.200000, -0.050000, 0.975000},
-                                                           {0.200000, 0.000000, 0.975000},
-                                                           {0.200000, 0.050000, 0.975000},
-                                                           {0.200000, 0.100000, 0.975000},
-                                                           {0.200000, 0.150000, 0.975000},
-                                                           {0.200000, 0.200000, 0.975000},
-                                                           {0.200000, 0.250000, 0.975000},
-                                                           {0.200000, 0.300000, 0.975000},
-                                                           {0.200000, 0.350000, 0.975000},
-                                                           {0.200000, 0.400000, 0.975000},
-                                                           {0.200000, 0.450000, 0.975000},
-                                                           {0.200000, 0.500000, 0.975000},
-                                                           {0.200000, 0.550000, 0.975000},
-                                                           {0.200000, 0.600000, 0.975000},
-                                                           {0.200000, 0.650000, 0.975000},
-                                                           {0.200000, 0.700000, 0.975000},
-                                                           {0.200000, 0.750000, 0.975000},
-                                                           {0.200000, 0.800000, 0.975000},
-                                                           {0.200000, 0.850000, 0.975000},
-                                                           {0.200000, 0.900000, 0.975000},
-                                                           {0.200000, 0.950000, 0.975000},
-                                                           {0.200000, 1.000000, 0.975000},
-                                                           {0.200000, 1.050000, 0.975000},
-                                                           {0.200000, 1.100000, 0.975000},
-                                                           {0.200000, 1.150000, 0.975000},
-                                                           {0.200000, 1.200000, 0.975000},
-                                                           {0.250000, -1.250000, 0.975000},
-                                                           {0.250000, -1.200000, 0.975000},
-                                                           {0.250000, -1.150000, 0.975000},
-                                                           {0.250000, -1.100000, 0.975000},
-                                                           {0.250000, -1.050000, 0.975000},
-                                                           {0.250000, -1.000000, 0.975000},
-                                                           {0.250000, -0.950000, 0.975000},
-                                                           {0.250000, -0.900000, 0.975000},
-                                                           {0.250000, -0.850000, 0.975000},
-                                                           {0.250000, -0.800000, 0.975000},
-                                                           {0.250000, -0.750000, 0.975000},
-                                                           {0.250000, -0.700000, 0.975000},
-                                                           {0.250000, -0.650000, 0.975000},
-                                                           {0.250000, -0.600000, 0.975000},
-                                                           {0.250000, -0.550000, 0.975000},
-                                                           {0.250000, -0.500000, 0.975000},
-                                                           {0.250000, -0.450000, 0.975000},
-                                                           {0.250000, -0.400000, 0.975000},
-                                                           {0.250000, -0.350000, 0.975000},
-                                                           {0.250000, -0.300000, 0.975000},
-                                                           {0.250000, -0.250000, 0.975000},
-                                                           {0.250000, -0.200000, 0.975000},
-                                                           {0.250000, -0.150000, 0.975000},
-                                                           {0.250000, -0.100000, 0.975000},
-                                                           {0.250000, -0.050000, 0.975000},
-                                                           {0.250000, 0.000000, 0.975000},
-                                                           {0.250000, 0.050000, 0.975000},
-                                                           {0.250000, 0.100000, 0.975000},
-                                                           {0.250000, 0.150000, 0.975000},
-                                                           {0.250000, 0.200000, 0.975000},
-                                                           {0.250000, 0.250000, 0.975000},
-                                                           {0.250000, 0.300000, 0.975000},
-                                                           {0.250000, 0.350000, 0.975000},
-                                                           {0.250000, 0.400000, 0.975000},
-                                                           {0.250000, 0.450000, 0.975000},
-                                                           {0.250000, 0.500000, 0.975000},
-                                                           {0.250000, 0.550000, 0.975000},
-                                                           {0.250000, 0.600000, 0.975000},
-                                                           {0.250000, 0.650000, 0.975000},
-                                                           {0.250000, 0.700000, 0.975000},
-                                                           {0.250000, 0.750000, 0.975000},
-                                                           {0.250000, 0.800000, 0.975000},
-                                                           {0.250000, 0.850000, 0.975000},
-                                                           {0.250000, 0.900000, 0.975000},
-                                                           {0.250000, 0.950000, 0.975000},
-                                                           {0.250000, 1.000000, 0.975000},
-                                                           {0.250000, 1.050000, 0.975000},
-                                                           {0.250000, 1.100000, 0.975000},
-                                                           {0.250000, 1.150000, 0.975000},
-                                                           {0.250000, 1.200000, 0.975000},
-                                                           {0.300000, -1.250000, 0.975000},
-                                                           {0.300000, -1.200000, 0.975000},
-                                                           {0.300000, -1.150000, 0.975000},
-                                                           {0.300000, -1.100000, 0.975000},
-                                                           {0.300000, -1.050000, 0.975000},
-                                                           {0.300000, -1.000000, 0.975000},
-                                                           {0.300000, -0.950000, 0.975000},
-                                                           {0.300000, -0.900000, 0.975000},
-                                                           {0.300000, -0.850000, 0.975000},
-                                                           {0.300000, -0.800000, 0.975000},
-                                                           {0.300000, -0.750000, 0.975000},
-                                                           {0.300000, -0.700000, 0.975000},
-                                                           {0.300000, -0.650000, 0.975000},
-                                                           {0.300000, -0.600000, 0.975000},
-                                                           {0.300000, -0.550000, 0.975000},
-                                                           {0.300000, -0.500000, 0.975000},
-                                                           {0.300000, -0.450000, 0.975000},
-                                                           {0.300000, -0.400000, 0.975000},
-                                                           {0.300000, -0.350000, 0.975000},
-                                                           {0.300000, -0.300000, 0.975000},
-                                                           {0.300000, -0.250000, 0.975000},
-                                                           {0.300000, -0.200000, 0.975000},
-                                                           {0.300000, -0.150000, 0.975000},
-                                                           {0.300000, -0.100000, 0.975000},
-                                                           {0.300000, -0.050000, 0.975000},
-                                                           {0.300000, 0.000000, 0.975000},
-                                                           {0.300000, 0.050000, 0.975000},
-                                                           {0.300000, 0.100000, 0.975000},
-                                                           {0.300000, 0.150000, 0.975000},
-                                                           {0.300000, 0.200000, 0.975000},
-                                                           {0.300000, 0.250000, 0.975000},
-                                                           {0.300000, 0.300000, 0.975000},
-                                                           {0.300000, 0.350000, 0.975000},
-                                                           {0.300000, 0.400000, 0.975000},
-                                                           {0.300000, 0.450000, 0.975000},
-                                                           {0.300000, 0.500000, 0.975000},
-                                                           {0.300000, 0.550000, 0.975000},
-                                                           {0.300000, 0.600000, 0.975000},
-                                                           {0.300000, 0.650000, 0.975000},
-                                                           {0.300000, 0.700000, 0.975000},
-                                                           {0.300000, 0.750000, 0.975000},
-                                                           {0.300000, 0.800000, 0.975000},
-                                                           {0.300000, 0.850000, 0.975000},
-                                                           {0.300000, 0.900000, 0.975000},
-                                                           {0.300000, 0.950000, 0.975000},
-                                                           {0.300000, 1.000000, 0.975000},
-                                                           {0.300000, 1.050000, 0.975000},
-                                                           {0.300000, 1.100000, 0.975000},
-                                                           {0.300000, 1.150000, 0.975000},
-                                                           {0.300000, 1.200000, 0.975000},
-                                                           {0.350000, -1.250000, 0.975000},
-                                                           {0.350000, -1.200000, 0.975000},
-                                                           {0.350000, -1.150000, 0.975000},
-                                                           {0.350000, -1.100000, 0.975000},
-                                                           {0.350000, -1.050000, 0.975000},
-                                                           {0.350000, -1.000000, 0.975000},
-                                                           {0.350000, -0.950000, 0.975000},
-                                                           {0.350000, -0.900000, 0.975000},
-                                                           {0.350000, -0.850000, 0.975000},
-                                                           {0.350000, -0.800000, 0.975000},
-                                                           {0.350000, -0.750000, 0.975000},
-                                                           {0.350000, -0.700000, 0.975000},
-                                                           {0.350000, -0.650000, 0.975000},
-                                                           {0.350000, -0.600000, 0.975000},
-                                                           {0.350000, -0.550000, 0.975000},
-                                                           {0.350000, -0.500000, 0.975000},
-                                                           {0.350000, -0.450000, 0.975000},
-                                                           {0.350000, -0.400000, 0.975000},
-                                                           {0.350000, -0.350000, 0.975000},
-                                                           {0.350000, -0.300000, 0.975000},
-                                                           {0.350000, -0.250000, 0.975000},
-                                                           {0.350000, -0.200000, 0.975000},
-                                                           {0.350000, -0.150000, 0.975000},
-                                                           {0.350000, -0.100000, 0.975000},
-                                                           {0.350000, -0.050000, 0.975000},
-                                                           {0.350000, 0.000000, 0.975000},
-                                                           {0.350000, 0.050000, 0.975000},
-                                                           {0.350000, 0.100000, 0.975000},
-                                                           {0.350000, 0.150000, 0.975000},
-                                                           {0.350000, 0.200000, 0.975000},
-                                                           {0.350000, 0.250000, 0.975000},
-                                                           {0.350000, 0.300000, 0.975000},
-                                                           {0.350000, 0.350000, 0.975000},
-                                                           {0.350000, 0.400000, 0.975000},
-                                                           {0.350000, 0.450000, 0.975000},
-                                                           {0.350000, 0.500000, 0.975000},
-                                                           {0.350000, 0.550000, 0.975000},
-                                                           {0.350000, 0.600000, 0.975000},
-                                                           {0.350000, 0.650000, 0.975000},
-                                                           {0.350000, 0.700000, 0.975000},
-                                                           {0.350000, 0.750000, 0.975000},
-                                                           {0.350000, 0.800000, 0.975000},
-                                                           {0.350000, 0.850000, 0.975000},
-                                                           {0.350000, 0.900000, 0.975000},
-                                                           {0.350000, 0.950000, 0.975000},
-                                                           {0.350000, 1.000000, 0.975000},
-                                                           {0.350000, 1.050000, 0.975000},
-                                                           {0.350000, 1.100000, 0.975000},
-                                                           {0.350000, 1.150000, 0.975000},
-                                                           {0.350000, 1.200000, 0.975000},
-                                                           {0.400000, -1.250000, 0.975000},
-                                                           {0.400000, -1.200000, 0.975000},
-                                                           {0.400000, -1.150000, 0.975000},
-                                                           {0.400000, -1.100000, 0.975000},
-                                                           {0.400000, -1.050000, 0.975000},
-                                                           {0.400000, -1.000000, 0.975000},
-                                                           {0.400000, -0.950000, 0.975000},
-                                                           {0.400000, -0.900000, 0.975000},
-                                                           {0.400000, -0.850000, 0.975000},
-                                                           {0.400000, -0.800000, 0.975000},
-                                                           {0.400000, -0.750000, 0.975000},
-                                                           {0.400000, -0.700000, 0.975000},
-                                                           {0.400000, -0.650000, 0.975000},
-                                                           {0.400000, -0.600000, 0.975000},
-                                                           {0.400000, -0.550000, 0.975000},
-                                                           {0.400000, -0.500000, 0.975000},
-                                                           {0.400000, -0.450000, 0.975000},
-                                                           {0.400000, -0.400000, 0.975000},
-                                                           {0.400000, -0.350000, 0.975000},
-                                                           {0.400000, -0.300000, 0.975000},
-                                                           {0.400000, -0.250000, 0.975000},
-                                                           {0.400000, -0.200000, 0.975000},
-                                                           {0.400000, -0.150000, 0.975000},
-                                                           {0.400000, -0.100000, 0.975000},
-                                                           {0.400000, -0.050000, 0.975000},
-                                                           {0.400000, 0.000000, 0.975000},
-                                                           {0.400000, 0.050000, 0.975000},
-                                                           {0.400000, 0.100000, 0.975000},
-                                                           {0.400000, 0.150000, 0.975000},
-                                                           {0.400000, 0.200000, 0.975000},
-                                                           {0.400000, 0.250000, 0.975000},
-                                                           {0.400000, 0.300000, 0.975000},
-                                                           {0.400000, 0.350000, 0.975000},
-                                                           {0.400000, 0.400000, 0.975000},
-                                                           {0.400000, 0.450000, 0.975000},
-                                                           {0.400000, 0.500000, 0.975000},
-                                                           {0.400000, 0.550000, 0.975000},
-                                                           {0.400000, 0.600000, 0.975000},
-                                                           {0.400000, 0.650000, 0.975000},
-                                                           {0.400000, 0.700000, 0.975000},
-                                                           {0.400000, 0.750000, 0.975000},
-                                                           {0.400000, 0.800000, 0.975000},
-                                                           {0.400000, 0.850000, 0.975000},
-                                                           {0.400000, 0.900000, 0.975000},
-                                                           {0.400000, 0.950000, 0.975000},
-                                                           {0.400000, 1.000000, 0.975000},
-                                                           {0.400000, 1.050000, 0.975000},
-                                                           {0.400000, 1.100000, 0.975000},
-                                                           {0.400000, 1.150000, 0.975000},
-                                                           {0.400000, 1.200000, 0.975000},
-                                                           {0.450000, -1.250000, 0.975000},
-                                                           {0.450000, -1.200000, 0.975000},
-                                                           {0.450000, -1.150000, 0.975000},
-                                                           {0.450000, -1.100000, 0.975000},
-                                                           {0.450000, -1.050000, 0.975000},
-                                                           {0.450000, -1.000000, 0.975000},
-                                                           {0.450000, -0.950000, 0.975000},
-                                                           {0.450000, -0.900000, 0.975000},
-                                                           {0.450000, -0.850000, 0.975000},
-                                                           {0.450000, -0.800000, 0.975000},
-                                                           {0.450000, -0.750000, 0.975000},
-                                                           {0.450000, -0.700000, 0.975000},
-                                                           {0.450000, -0.650000, 0.975000},
-                                                           {0.450000, -0.600000, 0.975000},
-                                                           {0.450000, -0.550000, 0.975000},
-                                                           {0.450000, -0.500000, 0.975000},
-                                                           {0.450000, -0.450000, 0.975000},
-                                                           {0.450000, -0.400000, 0.975000},
-                                                           {0.450000, -0.350000, 0.975000},
-                                                           {0.450000, -0.300000, 0.975000},
-                                                           {0.450000, -0.250000, 0.975000},
-                                                           {0.450000, -0.200000, 0.975000},
-                                                           {0.450000, -0.150000, 0.975000},
-                                                           {0.450000, -0.100000, 0.975000},
-                                                           {0.450000, -0.050000, 0.975000},
-                                                           {0.450000, 0.000000, 0.975000},
-                                                           {0.450000, 0.050000, 0.975000},
-                                                           {0.450000, 0.100000, 0.975000},
-                                                           {0.450000, 0.150000, 0.975000},
-                                                           {0.450000, 0.200000, 0.975000},
-                                                           {0.450000, 0.250000, 0.975000},
-                                                           {0.450000, 0.300000, 0.975000},
-                                                           {0.450000, 0.350000, 0.975000},
-                                                           {0.450000, 0.400000, 0.975000},
-                                                           {0.450000, 0.450000, 0.975000},
-                                                           {0.450000, 0.500000, 0.975000},
-                                                           {0.450000, 0.550000, 0.975000},
-                                                           {0.450000, 0.600000, 0.975000},
-                                                           {0.450000, 0.650000, 0.975000},
-                                                           {0.450000, 0.700000, 0.975000},
-                                                           {0.450000, 0.750000, 0.975000},
-                                                           {0.450000, 0.800000, 0.975000},
-                                                           {0.450000, 0.850000, 0.975000},
-                                                           {0.450000, 0.900000, 0.975000},
-                                                           {0.450000, 0.950000, 0.975000},
-                                                           {0.450000, 1.000000, 0.975000},
-                                                           {0.450000, 1.050000, 0.975000},
-                                                           {0.450000, 1.100000, 0.975000},
-                                                           {0.450000, 1.150000, 0.975000},
-                                                           {0.450000, 1.200000, 0.975000}};
-const double object_transform_quaternion_only[1030][4] = {{1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000},
-                                                          {1.000000, 0.000000, 0.000000, 0.000000}};
-const int object_can_skip_translation[1030] = {0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}; // bool
-const int object_can_skip_rotation[1030] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}; // bool
+const double object_transform_translation_only[35][3] = {{0.000000, 0.000000, 0.025000},
+                                                         {0.030000, 0.025000, 0.125000},
+                                                         {0.000000, 0.000000, -0.020000},
+                                                         {0.000000, 0.085000, -0.060000},
+                                                         {0.000000, 0.000000, -0.100000},
+                                                         {-0.025000, 0.000000, -0.200000},
+                                                         {0.025000, -0.030000, -0.300000},
+                                                         {0.000000, 0.000000, -0.025000},
+                                                         {0.000000, 0.050000, -0.050000},
+                                                         {0.000000, 0.000000, -0.070000},
+                                                         {0.000000, 0.070000, -0.150000},
+                                                         {0.000000, 0.100000, -0.250000},
+                                                         {0.000000, 0.025000, 0.050000},
+                                                         {0.000000, 0.000000, 0.000000},
+                                                         {-0.010000, 0.000000, 0.130000},
+                                                         {0.000000, 0.000000, 0.025000},
+                                                         {0.030000, -0.025000, 0.125000},
+                                                         {0.000000, 0.000000, -0.020000},
+                                                         {0.000000, -0.085000, -0.060000},
+                                                         {0.000000, 0.000000, -0.100000},
+                                                         {-0.025000, 0.000000, -0.200000},
+                                                         {0.025000, 0.030000, -0.300000},
+                                                         {0.000000, 0.000000, -0.025000},
+                                                         {0.000000, -0.050000, -0.050000},
+                                                         {0.000000, 0.000000, -0.070000},
+                                                         {0.000000, -0.070000, -0.150000},
+                                                         {0.000000, -0.100000, -0.250000},
+                                                         {0.000000, -0.025000, 0.050000},
+                                                         {0.000000, 0.000000, 0.000000},
+                                                         {0.010000, 0.000500, 0.140000},
+                                                         {0.000000, 0.000000, 0.000000},
+                                                         {0.000000, 0.000000, 0.000000},
+                                                         {0.000000, 0.000000, 0.000000},
+                                                         {0.000000, 0.000000, 0.000000},
+                                                         {0.000000, 0.000000, 0.975000}};
+const double object_transform_quaternion_only[35][4] = {{1.000000, 0.000000, 0.000000, 0.000000},
+                                                        {1.000000, 0.000000, 0.000000, 0.000000},
+                                                        {1.000000, 0.000000, 0.000000, 0.000000},
+                                                        {1.000000, 0.000000, 0.000000, 0.000000},
+                                                        {1.000000, 0.000000, 0.000000, 0.000000},
+                                                        {1.000000, 0.000000, 0.000000, 0.000000},
+                                                        {1.000000, 0.000000, 0.000000, 0.000000},
+                                                        {1.000000, 0.000000, 0.000000, 0.000000},
+                                                        {1.000000, 0.000000, 0.000000, 0.000000},
+                                                        {1.000000, 0.000000, 0.000000, 0.000000},
+                                                        {1.000000, 0.000000, 0.000000, 0.000000},
+                                                        {1.000000, 0.000000, 0.000000, 0.000000},
+                                                        {1.000000, 0.000000, 0.000000, 0.000000},
+                                                        {1.000000, 0.000000, 0.000000, 0.000000},
+                                                        {1.000000, 0.000000, 0.000000, 0.000000},
+                                                        {1.000000, 0.000000, 0.000000, 0.000000},
+                                                        {1.000000, 0.000000, 0.000000, 0.000000},
+                                                        {1.000000, 0.000000, 0.000000, 0.000000},
+                                                        {1.000000, 0.000000, 0.000000, 0.000000},
+                                                        {1.000000, 0.000000, 0.000000, 0.000000},
+                                                        {1.000000, 0.000000, 0.000000, 0.000000},
+                                                        {1.000000, 0.000000, 0.000000, 0.000000},
+                                                        {1.000000, 0.000000, 0.000000, 0.000000},
+                                                        {1.000000, 0.000000, 0.000000, 0.000000},
+                                                        {1.000000, 0.000000, 0.000000, 0.000000},
+                                                        {1.000000, 0.000000, 0.000000, 0.000000},
+                                                        {1.000000, 0.000000, 0.000000, 0.000000},
+                                                        {1.000000, 0.000000, 0.000000, 0.000000},
+                                                        {1.000000, 0.000000, 0.000000, 0.000000},
+                                                        {1.000000, 0.000000, 0.000000, 0.000000},
+                                                        {1.000000, 0.000000, 0.000000, 0.000000},
+                                                        {1.000000, 0.000000, 0.000000, 0.000000},
+                                                        {1.000000, 0.000000, 0.000000, 0.000000},
+                                                        {1.000000, 0.000000, 0.000000, 0.000000},
+                                                        {1.000000, 0.000000, 0.000000, 0.000000}};
+const int object_can_skip_translation[35] = {0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,1,1,0}; // bool
+const int object_can_skip_rotation[35] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}; // bool
 
 // Collision Objects Function
 const double default_inflation = 0.075;
@@ -2486,7 +523,7 @@ static inline std::vector<CollisionObject*> getRobotCollisionObjects(double infl
 {
   std::vector<CollisionObject*> objects;
 
-  objects.reserve(1030);
+  objects.reserve(35);
   objects.push_back( inflatedCollisionObject(Sphere(0.05), inflation) );
   objects.push_back( inflatedCollisionObject(Sphere(0.05), inflation) );
   objects.push_back( inflatedCollisionObject(Sphere(0.05), inflation) );
@@ -2500,8 +537,8 @@ static inline std::vector<CollisionObject*> getRobotCollisionObjects(double infl
   objects.push_back( inflatedCollisionObject(Sphere(0.05), inflation) );
   objects.push_back( inflatedCollisionObject(Sphere(0.05), inflation) );
   objects.push_back( inflatedCollisionObject(Sphere(0.07), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.07), inflation) );
-  objects.push_back( inflatedCollisionObject(Capsule(0.035, 0.14), inflation) );
+  objects.push_back( inflatedCollisionObject(Sphere(0.06), inflation) );
+  objects.push_back( inflatedCollisionObject(Box(0.15, 0.03, 0.18), inflation) );
   objects.push_back( inflatedCollisionObject(Sphere(0.05), inflation) );
   objects.push_back( inflatedCollisionObject(Sphere(0.05), inflation) );
   objects.push_back( inflatedCollisionObject(Sphere(0.05), inflation) );
@@ -2515,1008 +552,13 @@ static inline std::vector<CollisionObject*> getRobotCollisionObjects(double infl
   objects.push_back( inflatedCollisionObject(Sphere(0.05), inflation) );
   objects.push_back( inflatedCollisionObject(Sphere(0.05), inflation) );
   objects.push_back( inflatedCollisionObject(Sphere(0.07), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.07), inflation) );
-  objects.push_back( inflatedCollisionObject(Capsule(0.035, 0.14), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
-  objects.push_back( inflatedCollisionObject(Sphere(0.025), inflation) );
+  objects.push_back( inflatedCollisionObject(Sphere(0.05), inflation) );
+  objects.push_back( inflatedCollisionObject(Box(0.09, 0.03, 0.14), inflation) );
+  objects.push_back( inflatedCollisionObject(Capsule(0.025, 1.0), inflation) );
+  objects.push_back( inflatedCollisionObject(Capsule(0.025, 1.0), inflation) );
+  objects.push_back( inflatedCollisionObject(Capsule(0.025, 1.0), inflation) );
+  objects.push_back( inflatedCollisionObject(Capsule(0.025, 1.0), inflation) );
+  objects.push_back( inflatedCollisionObject(Box(1.0, 2.5, 0.05), inflation) );
 
   return objects;
 }
