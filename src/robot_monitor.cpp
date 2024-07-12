@@ -506,7 +506,30 @@ RobotMonitor::computeAndPublishVisualization(const JointLinkCollisionStateConstP
     }
     else if (curr_object->getNodeType() == hpp::fcl::GEOM_PLANE)
     {
-      ROS_WARN("GEOM_PLANE TODO"); // TODO
+      const Plane& shape = static_cast<const Plane&>(*(curr_object->collisionGeometry()));
+
+      visualization_msgs::Marker marker;
+      marker.header = msg->header;
+      marker.ns = std::string("robot_collision_body_plane");
+      marker.id = id_counter++;
+      marker.type = visualization_msgs::Marker::CUBE;
+      // TODO: visualize as a large box based on plane normal
+      marker.scale.x = 100;
+      marker.scale.y = 100;
+      marker.scale.z = 0.001;
+      marker.pose.position.x = curr_translation.x();
+      marker.pose.position.y = curr_translation.y();
+      marker.pose.position.z = curr_translation.z();
+      marker.pose.orientation.x = curr_rotation.x();
+      marker.pose.orientation.y = curr_rotation.y();
+      marker.pose.orientation.z = curr_rotation.z();
+      marker.pose.orientation.w = curr_rotation.w();
+      marker.action = visualization_msgs::Marker::ADD;
+      marker.color.a = 0.75; // Don't forget to set the alpha!
+      marker.color.r = 0.0;
+      marker.color.g = 0.0;
+      marker.color.b = 1.0;
+      arr.markers.push_back(marker);      
     }
     else
     {

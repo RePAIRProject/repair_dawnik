@@ -174,7 +174,7 @@ proximity:
       shape: "Sphere(0.05)"
       translation: [0.0, 0.07, -0.15]
     - link: "arm_1_5"
-      shape: "Sphere(0.05)"
+      shape: "Sphere(0.06)"
       translation: [0.0, 0.1, -0.25]
     
     - link: "arm_1_6"
@@ -184,10 +184,10 @@ proximity:
     - link: "arm_1_7"
       shape: "Sphere(0.06)"
       translation: [0.0, 0.0, 0.0]
-    - link: "arm_1_7"
+    - link: "arm_1_angle_flange"
       # shape: "Capsule(0.055, 0.18)"
-      shape: "Box(0.15, 0.03, 0.18)"
-      translation: [-0.01, 0.0, 0.13]
+      shape: "Box(0.03, 0.15, 0.18)"
+      translation: [-0.0, 0.0, 0.11]
 
 #########################################
 
@@ -229,7 +229,7 @@ proximity:
       shape: "Sphere(0.05)"
       translation: [0.0, -0.07, -0.15]
     - link: "arm_2_5"
-      shape: "Sphere(0.05)"
+      shape: "Sphere(0.06)"
       translation: [0.0, -0.1, -0.25]
 
     - link: "arm_2_6"
@@ -239,10 +239,10 @@ proximity:
     - link: "arm_2_7"
       shape: "Sphere(0.05)"
       translation: [0.0, 0.0, 0.0]
-    - link: "arm_2_7"
+    - link: "arm_2_angle_flange"
       # shape: "Capsule(0.03, 0.14)"
-      shape: "Box(0.09, 0.03, 0.14)"
-      translation: [0.01, 0.0005, 0.14]
+      shape: "Box(0.03, 0.09, 0.16)"
+      translation: [0.0, 0.005, 0.12]
 
     - link: "vbar1_link"
       shape: "Capsule(0.025, 1.0)"
